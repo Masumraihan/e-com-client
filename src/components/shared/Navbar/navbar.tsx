@@ -24,6 +24,7 @@ import { useAppSelector } from "@/redux/hooks";
 import { TTokenUser, useCurrentUser } from "@/redux/features/auth/authSlice";
 import ThemeToggle from "@/components/layout/ThemeToggle/theme-toggle";
 import { useEffect, useState } from "react";
+import { userRole } from "@/constants/global";
 
 const categories = [
   "Plain",
@@ -145,6 +146,15 @@ const Navbar = () => {
                     </NavigationMenuLink>
                   </Link>
                 </NavigationMenuItem>
+                {user?.role === userRole.admin || user?.role === userRole.superAdmin ? (
+                  <NavigationMenuItem>
+                    <Link href='/dashboard' legacyBehavior passHref>
+                      <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                        <span className='text-base'>Dashboard</span>
+                      </NavigationMenuLink>
+                    </Link>
+                  </NavigationMenuItem>
+                ) : null}
               </NavigationMenuList>
             </NavigationMenu>
           </div>

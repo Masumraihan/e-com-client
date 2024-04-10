@@ -190,7 +190,7 @@ export function PaymentTable<TData, TValue>({
         className='max-w-sm'
       />
 
-      <div className='rounded-md border'>
+      <div className='border rounded-md'>
         <Table>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
@@ -228,14 +228,14 @@ export function PaymentTable<TData, TValue>({
           </TableBody>
         </Table>
       </div>
-      <div className='flex items-center justify-end space-x-2 py-4'>
+      <div className='flex items-center justify-end py-4 space-x-2'>
         <div className='flex-1 text-sm text-muted-foreground'>
           {table.getFilteredSelectedRowModel().rows.length} of{" "}
           {table.getFilteredRowModel().rows.length} row(s) selected.
         </div>
         <div className='flex flex-col items-center gap-4 sm:flex-row sm:gap-6 lg:gap-8'>
           <div className='flex items-center space-x-2'>
-            <p className='whitespace-nowrap text-sm font-medium'>Rows per page</p>
+            <p className='text-sm font-medium whitespace-nowrap'>Rows per page</p>
             <Select
               value={`${table.getState().pagination.pageSize}`}
               onValueChange={(value) => {
@@ -245,7 +245,7 @@ export function PaymentTable<TData, TValue>({
               <SelectTrigger className='h-8 w-[70px]'>
                 <SelectValue placeholder={table.getState().pagination.pageSize} />
               </SelectTrigger>
-              <SelectContent side='top'>
+              <SelectContent side='top' className="bg-white dark:bg-dark">
                 {pageSizeOptions.map((pageSize) => (
                   <SelectItem key={pageSize} value={`${pageSize}`}>
                     {pageSize}
@@ -262,38 +262,38 @@ export function PaymentTable<TData, TValue>({
           <Button
             aria-label='Go to first page'
             variant='outline'
-            className='hidden h-8 w-8 p-0 lg:flex'
+            className='hidden w-8 h-8 p-0 lg:flex'
             onClick={() => table.setPageIndex(0)}
             disabled={!table.getCanPreviousPage()}
           >
-            <DoubleArrowLeftIcon className='h-4 w-4' aria-hidden='true' />
+            <DoubleArrowLeftIcon className='w-4 h-4' aria-hidden='true' />
           </Button>
           <Button
             aria-label='Go to previous page'
             variant='outline'
-            className='h-8 w-8 p-0'
+            className='w-8 h-8 p-0'
             onClick={() => table.previousPage()}
             disabled={!table.getCanPreviousPage()}
           >
-            <ChevronLeftIcon className='h-4 w-4' aria-hidden='true' />
+            <ChevronLeftIcon className='w-4 h-4' aria-hidden='true' />
           </Button>
           <Button
             aria-label='Go to next page'
             variant='outline'
-            className='h-8 w-8 p-0'
+            className='w-8 h-8 p-0'
             onClick={() => table.nextPage()}
             disabled={!table.getCanNextPage()}
           >
-            <ChevronRightIcon className='h-4 w-4' aria-hidden='true' />
+            <ChevronRightIcon className='w-4 h-4' aria-hidden='true' />
           </Button>
           <Button
             aria-label='Go to last page'
             variant='outline'
-            className='hidden h-8 w-8 p-0 lg:flex'
+            className='hidden w-8 h-8 p-0 lg:flex'
             onClick={() => table.setPageIndex(table.getPageCount() - 1)}
             disabled={!table.getCanNextPage()}
           >
-            <DoubleArrowRightIcon className='h-4 w-4' aria-hidden='true' />
+            <DoubleArrowRightIcon className='w-4 h-4' aria-hidden='true' />
           </Button>
         </div>
       </div>

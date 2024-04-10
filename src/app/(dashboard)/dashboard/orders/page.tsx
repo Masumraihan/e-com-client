@@ -1,6 +1,6 @@
 import BreadCrumb from "@/components/breadcrumb";
-import { columns } from "@/components/tables/users/columns";
-import { UsersTable } from "@/components/tables/users/users-table";
+import { columns } from "@/components/tables/orders/columns";
+import { UsersTable } from "@/components/tables/orders/users-table";
 import { buttonVariants } from "@/components/ui/button";
 import { Heading } from "@/components/ui/heading";
 import { Separator } from "@/components/ui/separator";
@@ -39,10 +39,7 @@ export default async function page({ searchParams }: paramsProps) {
         <div className='flex items-start justify-between'>
           <Heading title={`Orders (${totalUsers})`} description='Manage orders for your business' />
 
-          <Link
-            href={"/dashboard"}
-            className={cn(buttonVariants({ variant: "default" }))}
-          >
+          <Link href={"/dashboard"} className={cn(buttonVariants({ variant: "default" }))}>
             <Plus className='w-4 h-4 mr-2' /> Add New
           </Link>
         </div>

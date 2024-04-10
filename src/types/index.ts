@@ -30,3 +30,18 @@ export interface FooterItem {
 export type MainNavItem = NavItemWithOptionalChildren;
 
 export type SidebarNavItem = NavItemWithChildren;
+
+export type TQuery = { name: string; value: string; }[] | [];
+
+export type TErrorSources = {
+  path: string | number;
+  message: string;
+};
+
+export type TErrorType = {
+  errorSources: TErrorSources[];
+  message: string;
+  statusCode: number;
+  stack?: string;
+};
+

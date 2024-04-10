@@ -8,13 +8,13 @@ import {
   DropdownMenuLabel,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { TUser } from "@/constants/data";
-import { Edit, MoreHorizontal, Trash } from "lucide-react";
+import { Employee } from "@/constants/data";
+import { Edit, Maximize2, MoreHorizontal, Trash } from "lucide-react";
 import { useParams, useRouter } from "next/navigation";
 import { useState } from "react";
 
 interface CellActionProps {
-  data: TUser;
+  data: Employee;
 }
 
 export const CellAction: React.FC<CellActionProps> = ({ data }) => {
@@ -42,8 +42,9 @@ export const CellAction: React.FC<CellActionProps> = ({ data }) => {
         </DropdownMenuTrigger>
         <DropdownMenuContent align='end' className='bg-white dark:bg-dark'>
           <DropdownMenuLabel>Actions</DropdownMenuLabel>
+
           <DropdownMenuItem onClick={() => router.push(`/dashboard/user/${data.id}`)}>
-            <Edit className='mr-2 h-4 w-4' /> Details
+            <Maximize2 className='mr-2 h-4 w-4' /> Details
           </DropdownMenuItem>
           <DropdownMenuItem onClick={() => router.push(`/dashboard/user/${data.id}`)}>
             <Edit className='mr-2 h-4 w-4' /> Update

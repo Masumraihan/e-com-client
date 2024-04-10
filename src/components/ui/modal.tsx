@@ -15,13 +15,7 @@ interface ModalProps {
   children?: React.ReactNode;
 }
 
-export const Modal: React.FC<ModalProps> = ({
-  title,
-  description,
-  isOpen,
-  onClose,
-  children,
-}) => {
+export const Modal: React.FC<ModalProps> = ({ title, description, isOpen, onClose, children }) => {
   const onChange = (open: boolean) => {
     if (!open) {
       onClose();
@@ -30,7 +24,7 @@ export const Modal: React.FC<ModalProps> = ({
 
   return (
     <Dialog open={isOpen} onOpenChange={onChange}>
-      <DialogContent>
+      <DialogContent className='bg-white dark:bg-dark'>
         <DialogHeader>
           <DialogTitle>{title}</DialogTitle>
           <DialogDescription>{description}</DialogDescription>

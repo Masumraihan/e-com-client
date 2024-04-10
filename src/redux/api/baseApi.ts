@@ -7,7 +7,7 @@ import {
   createApi,
   fetchBaseQuery,
 } from "@reduxjs/toolkit/query/react";
-import { TTokenUser, login, logout } from "./authSlice";
+import { TTokenUser, login, logout } from "../features/auth/authSlice";
 import { jwtDecode } from "jwt-decode";
 
 const baseQuery = fetchBaseQuery({
@@ -51,6 +51,7 @@ const baseApi = createApi({
   reducerPath: "baseApi",
   baseQuery: baseQueryWithRefreshToken,
   endpoints: () => ({}),
+  tagTypes: ["User"],
 });
 
 export default baseApi;
