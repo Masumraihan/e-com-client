@@ -4,6 +4,7 @@ import { Eye, Heart, ShoppingCart } from "lucide-react";
 import { Rating, ThinStar } from "@smastrom/react-rating";
 import { Button } from "./button";
 import Link from "next/link";
+import { TProduct } from "@/app/types";
 
 type TArrival = {
   id: number;
@@ -13,20 +14,20 @@ type TArrival = {
   image: StaticImageData;
   discount?: number;
 };
-const ProductCard = ({ product }: { product: TArrival }) => {
+const ProductCard = ({ product }: { product: TProduct }) => {
   return (
     <div className='relative overflow-hidden group'>
       <Card>
         <CardHeader className='p-2'>
-          <Image
+          {/*<Image
             placeholder='blur'
             src={product.image}
             alt={product.name}
             className='object-cover w-full h-full rounded '
-          />
+          />*/}
         </CardHeader>
         <CardContent className='grid space-y-1'>
-          <CardTitle className='lg:text-xl'>{product.name}</CardTitle>
+          <CardTitle className='lg:text-xl'>{product.title}</CardTitle>
 
           <div className='flex gap-0.5'>
             <Rating
@@ -56,7 +57,7 @@ const ProductCard = ({ product }: { product: TArrival }) => {
           </div>
         </CardContent>
         <CardFooter className='gap-3'>
-          <Link href={`/products/${product.name.trim()}`} className='w-full'>
+          <Link href={`/products/${product.title.trim()}`} className='w-full'>
             <Button className='w-full'>
               <ShoppingCart className='w-4 h-4 mr-2' /> Add To Cart
             </Button>
