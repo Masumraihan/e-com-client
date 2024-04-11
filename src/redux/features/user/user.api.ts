@@ -5,10 +5,18 @@ const userApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     getAllUsers: builder.query({
       query: (query: TQuery) => {
-        console.log(query);
+        const params = new URLSearchParams();
+        if (query && query.length > 0) {
+          for (const key of query) {
+            if (key.value) {
+              params.append(key.name, key.value);
+            }
+          }
+        }
         return {
           url: "/user/get-all-users",
           method: "GET",
+          params,
         };
       },
       providesTags: ["User"],

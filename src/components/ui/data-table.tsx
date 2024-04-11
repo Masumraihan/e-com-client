@@ -43,15 +43,15 @@ export function DataTable<TData, TValue>({
     getFilteredRowModel: getFilteredRowModel(),
   });
 
-  /* this can be used to get the selectedrows 
+  /* this can be used to get the selected rows 
   console.log("value", table.getFilteredSelectedRowModel()); */
 
   return (
     <>
       <Input
         placeholder={`Search ${searchKey}...`}
-        value={(table.getColumn(searchKey)?.getFilterValue() as string) ?? ""}
-        onChange={(event) => table.getColumn(searchKey)?.setFilterValue(event.target.value)}
+        //value={(table.getColumn(searchKey)?.getFilterValue() as string) ?? ""}
+        onChange={(event) => setQuery([{ name: "searchTerm", value: event.target.value }])}
         className='max-w-sm focus:ring-primary'
       />
 

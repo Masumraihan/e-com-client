@@ -7,13 +7,24 @@ import { useGetAllUsersQuery } from "@/redux/features/user/user.api";
 import { useParams, useRouter } from "next/navigation";
 import { useState } from "react";
 import { columns } from "./columns";
+import { Button } from "@/components/ui/button";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { TQuery } from "@/types";
 
 export const UserClient = (): any => {
   const params = useParams();
   const router = useRouter();
-  const [query, setQuery] = useState([]);
+  const [query, setQuery] = useState<TQuery>([]);
 
-  const { data: users, isFetching } = useGetAllUsersQuery(query);
+  const { data: users, isLoading } = useGetAllUsersQuery(query);
 
   return (
     <>
@@ -22,12 +33,28 @@ export const UserClient = (): any => {
           title={`Users (${users?.data.length ?? 0})`}
           description='Manage users for your business'
         />
-        {/*<Button className='text-xs md:text-sm' onClick={() => router.push(`/dashboard`)}>
-          <Plus className='w-4 h-4 mr-2' /> Add New
-        </Button>*/}
+        <Select
+          onValueChange={(value) => {
+            if (!value) {
+              return setQuery([]);
+            }
+            setQuery([{ name: "isBlocked", value }]);
+          }}
+        >
+          <SelectTrigger className='w-[180px]'>
+            <SelectValue placeholder='Filter' />
+          </SelectTrigger>
+          <SelectContent aria-hidden={false}>
+            <SelectGroup>
+              <SelectItem value=''>All</SelectItem>
+              <SelectItem value='false'>Filter By Active</SelectItem>
+              <SelectItem value='true'>Filter By Blocked</SelectItem>
+            </SelectGroup>
+          </SelectContent>
+        </Select>
       </div>
       <Separator />
-      {isFetching ? (
+      {isLoading ? (
         <p className='text-center'>loading....</p>
       ) : (
         <>
