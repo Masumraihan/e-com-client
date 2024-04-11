@@ -31,7 +31,7 @@ export type MainNavItem = NavItemWithOptionalChildren;
 
 export type SidebarNavItem = NavItemWithChildren;
 
-export type TQuery = { name: string; value: string; }[] | [];
+export type TQuery = { name: string; value: string }[] | [];
 
 export type TErrorSources = {
   path: string | number;
@@ -44,4 +44,3 @@ export type TErrorType = {
   statusCode: number;
   stack?: string;
 };
-

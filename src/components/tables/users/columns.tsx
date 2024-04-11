@@ -3,8 +3,9 @@ import { ColumnDef } from "@tanstack/react-table";
 import { CellAction } from "./cell-action";
 import { TUser } from "@/constants/data";
 import { Checkbox } from "@/components/ui/checkbox";
+import { TResponseUser } from "@/types/user.types";
 
-export const columns: ColumnDef<TUser>[] = [
+export const columns: ColumnDef<TResponseUser>[] = [
   {
     id: "select",
     header: ({ table }) => (
@@ -40,8 +41,9 @@ export const columns: ColumnDef<TUser>[] = [
     accessorKey: "address",
     header: "Address",
   },
+
   {
     id: "actions",
-    cell: ({ row }) => <CellAction data={row.original}  />,
+    cell: ({ row }) => <CellAction data={row.original} />,
   },
 ];
