@@ -4,22 +4,23 @@ import { Heading } from "@/components/ui/heading";
 import { cn } from "@/lib/utils";
 import { Plus } from "lucide-react";
 import Link from "next/link";
-import AllCategories from "./AllCategories";
+import React from "react";
+import AllSubCategories from "./AllSubCategories";
 
 const breadcrumbItems = [
   { title: "Dashboard", link: "/dashboard" },
-  { title: "Category", link: "/dashboard/category" },
+  { title: "Sub Category", link: "/dashboard/sub-category" },
 ];
 
-const CategoryPage = async () => {
-  let categories = [];
+const SubCategoryPage = async () => {
+  let subCategories = [];
 
   try {
-    const res = await fetch(`${process.env.NEXT_BASE_URL}/category/get-all-categories`, {
+    const res = await fetch(`${process.env.NEXT_BASE_URL}/sub-category/get-all-sub-categories`, {
       cache: "no-cache",
     });
     const data = await res.json();
-    categories = data.data;
+    subCategories = data.data;
   } catch (error) {
     console.log(error);
   }
@@ -28,7 +29,7 @@ const CategoryPage = async () => {
     <div className='flex-1 p-4 px-4 mt-6 space-y-4 md:px-8'>
       <BreadCrumb items={breadcrumbItems} />
       <div className='flex items-start justify-between'>
-        <Heading title='Categories' description='Manage category for your business' />
+        <Heading title='Sub Categories' description='Manage sub category for your business' />
 
         <Link
           href={"/dashboard/sub-category/add-sub-category"}
@@ -38,10 +39,10 @@ const CategoryPage = async () => {
         </Link>
       </div>
       <div>
-        <AllCategories categories={categories} />
+        <AllSubCategories subCategories={subCategories} />
       </div>
     </div>
   );
 };
 
-export default CategoryPage;
+export default SubCategoryPage;

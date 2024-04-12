@@ -9,7 +9,13 @@ const productApi = baseApi.injectEndpoints({
         body: data,
       }),
     }),
+    deleteCategory: builder.mutation({
+      query: (id) => ({
+        url: `/category/delete-category/${id}`,
+        method: "DELETE",
+      }),
+    }),
   }),
 });
 
-export const { useCreateCategoryMutation } = productApi;
+export const { useCreateCategoryMutation,useDeleteCategoryMutation } = productApi;

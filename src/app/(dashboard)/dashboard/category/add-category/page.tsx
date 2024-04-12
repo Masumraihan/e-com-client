@@ -10,7 +10,7 @@ const CreateCategoryPage = () => {
   return (
     <div className='flex-1 p-4 px-4 mt-6 space-y-4 md:px-8'>
       <BreadCrumb items={breadcrumbItems} />
-      <Heading title='Add Category' description='create category for your business' />
+      <Heading title='Add Category' description='Create category for your business' />
       <CreateCategoryForm />
     </div>
   );

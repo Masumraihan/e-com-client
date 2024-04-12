@@ -33,7 +33,8 @@ import {
   ShoppingBasket,
   DollarSign,
   BaggageClaim,
-  Blocks
+  Blocks,
+  LayoutTemplate,
 } from "lucide-react";
 
 export type Icon = LucideIcon;
@@ -69,7 +70,8 @@ export const Icons = {
   sun: SunMedium,
   moon: Moon,
   laptop: Laptop,
-  category:Blocks,
+  category: Blocks,
+  subCategory: LayoutTemplate,
   gitHub: ({ ...props }: LucideProps) => (
     <svg
       aria-hidden='true'

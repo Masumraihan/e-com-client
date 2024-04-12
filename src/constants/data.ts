@@ -257,6 +257,12 @@ export const navItems: NavItem[] = [
     label: "category",
   },
   {
+    title: "Sub Category",
+    href: "/dashboard/sub-category",
+    icon: "subCategory",
+    label: "subcategory",
+  },
+  {
     title: "User",
     href: "/dashboard/user",
     icon: "user",
