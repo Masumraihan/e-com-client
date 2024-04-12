@@ -49,7 +49,7 @@ export const columns: ColumnDef<TProduct>[] = [
             <DropdownMenuContent align='end' className='bg-white dark:bg-dark'>
               <DropdownMenuLabel>Actions</DropdownMenuLabel>
               <DropdownMenuItem onClick={() => navigator.clipboard.writeText(product._id)}>
-                Copy payment ID
+                Copy Product ID
               </DropdownMenuItem>
               <DropdownMenuSeparator />
               <DropdownMenuItem>View customer</DropdownMenuItem>
