@@ -1,15 +1,15 @@
 "use client";
 import { useState } from "react";
-import CustomForm from "./forms/CustomForm";
-import FormInput from "./forms/FormInput";
-import { Modal } from "./ui/modal";
+import CustomForm from "./CustomForm";
+import FormInput from "./FormInput";
+import { Modal } from "../ui/modal";
 
 import { userRole } from "@/constants/global";
-import { useUpdateUserMutation } from "@/redux/features/user/user.api";
+import { useUpdateUserMutation } from "@/redux/features/user/userApi";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import CustomSelect from "./forms/CustomSelect";
-import { Button } from "./ui/button";
+import CustomSelect from "./CustomSelect";
+import { Button } from "../ui/button";
 
 const updateUserSchema = z.object({
   name: z.string().optional(),

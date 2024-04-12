@@ -3,7 +3,7 @@ import { DataTable } from "@/components/ui/data-table";
 import { Heading } from "@/components/ui/heading";
 import { Separator } from "@/components/ui/separator";
 import { TUser } from "@/constants/data";
-import { useGetAllUsersQuery } from "@/redux/features/user/user.api";
+import { useGetAllUsersQuery } from "@/redux/features/user/userApi";
 import { useParams, useRouter } from "next/navigation";
 import { useState } from "react";
 import { columns } from "./columns";

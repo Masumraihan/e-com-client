@@ -1,5 +1,5 @@
 "use client";
-import UserUpdateModal from "@/components/UserUpdateModal";
+import UserUpdateModal from "@/components/forms/UserUpdateModal";
 import { AlertModal } from "@/components/modal/alert-modal";
 import BlockModal from "@/components/ui/BlockModal";
 import { Button } from "@/components/ui/button";
@@ -10,7 +10,7 @@ import {
   DropdownMenuLabel,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { useDeleteUserMutation, useUpdateUserMutation } from "@/redux/features/user/user.api";
+import { useDeleteUserMutation, useUpdateUserMutation } from "@/redux/features/user/userApi";
 import { TResponseUser } from "@/types/user.types";
 import { Edit, MoreHorizontal, Trash, UserX } from "lucide-react";
 import { useState } from "react";

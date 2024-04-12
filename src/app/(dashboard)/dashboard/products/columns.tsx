@@ -48,12 +48,15 @@ export const columns: ColumnDef<TProduct>[] = [
             </DropdownMenuTrigger>
             <DropdownMenuContent align='end' className='bg-white dark:bg-dark'>
               <DropdownMenuLabel>Actions</DropdownMenuLabel>
-              <DropdownMenuItem onClick={() => navigator.clipboard.writeText(product._id)}>
+              <DropdownMenuItem
+                className='cursor-pointer'
+                onClick={() => navigator.clipboard.writeText(product._id)}
+              >
                 Copy Product ID
               </DropdownMenuItem>
               <DropdownMenuSeparator />
-              <DropdownMenuItem>View customer</DropdownMenuItem>
-              <DropdownMenuItem>View payment details</DropdownMenuItem>
+              <DropdownMenuItem className='cursor-pointer'>Update</DropdownMenuItem>
+              <DropdownMenuItem className='cursor-pointer'>Delete</DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
         </div>

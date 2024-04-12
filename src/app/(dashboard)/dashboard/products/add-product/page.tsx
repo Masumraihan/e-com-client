@@ -23,22 +23,53 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
-
-const formSchema = z.object({
-  product_name: z.string().min(5, {
-    message: "Product name must be at least 2 characters.",
-  }),
-  category: z.string({ required_error: "Select a category" }),
-  price: z.string({ required_error: "Price is required" }),
-  description: z.string({ required_error: "Description is required" }),
+import BreadCrumb from "@/components/breadcrumb";
+import CustomForm from "@/components/forms/CustomForm";
+import FormInput from "@/components/forms/FormInput";
+const keywordsValidationSchema = z.object({
+  value: z.string(),
+  isDelete: z.boolean(),
 });
 
-export default function AddProductForm() {
+const formSchema = z.object({
+  title: z.string({
+    required_error: "Title is required",
+  }),
+  description: z.string({
+    required_error: "Description is required",
+  }),
+  price: z.number({
+    required_error: "Price is required",
+  }),
+  subCategory: z.string({
+    required_error: "Category is required",
+  }),
+  images: z.array(
+    z.string({
+      required_error: "At least one image are required",
+    }),
+  ),
+  quantity: z.number({
+    required_error: "Quantity is required",
+  }),
+  discount: z.number().optional(),
+  size: z.string().optional(),
+  color: z.string().optional(),
+  keywords: z.array(keywordsValidationSchema).optional(),
+});
+
+const breadcrumbItems = [
+  { title: "Dashboard", link: "/dashboard/" },
+  { title: "Products", link: "/dashboard/products" },
+  { title: "Add Product", link: "/dashboard/products/add-product" },
+];
+
+const AddProductForm = () => {
   // 1. Define your form.
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      product_name: "",
+      title: "",
     },
   });
 
@@ -48,9 +79,10 @@ export default function AddProductForm() {
   }
 
   return (
-    <div className='p-4 md:p-8 pt-6'>
-      <h1 className='text-3xl font-bold mb-4'>Add your Product</h1>
-      <Form {...form}>
+    <div className='p-4 pt-6 md:p-8'>
+      <h1 className='mb-4 text-3xl font-bold'>Add your Product</h1>
+      <BreadCrumb items={breadcrumbItems} />
+      {/*<Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-4'>
           <FormField
             control={form.control}
@@ -145,7 +177,17 @@ export default function AddProductForm() {
           />
           <Button type='submit'>Submit</Button>
         </form>
-      </Form>
+      </Form>*/}
+
+      <CustomForm onSubmit={onSubmit} resolver={zodResolver(formSchema)}>
+        <FormInput
+          label='Product Name'
+          placeholder='Product Name'
+          name='product_name'
+          type='text'
+        />
+      </CustomForm>
     </div>
   );
-}
+};
+export default AddProductForm;

@@ -52,7 +52,7 @@ const ProductsPage = async ({ searchParams }: paramsProps) => {
             description='Manage products for your business'
           />
 
-          <Link href={"/dashboard"} className={cn(buttonVariants({ variant: "default" }))}>
+          <Link href={"/dashboard/products/add-product"} className={cn(buttonVariants({ variant: "default" }))}>
             <Plus className='w-4 h-4 mr-2' /> Add New
           </Link>
         </div>
