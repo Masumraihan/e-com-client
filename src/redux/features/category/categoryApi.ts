@@ -1,6 +1,6 @@
 import baseApi from "@/redux/api/baseApi";
 
-const productApi = baseApi.injectEndpoints({
+const categoryApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     createCategory: builder.mutation({
       query: (data) => ({
@@ -18,4 +18,4 @@ const productApi = baseApi.injectEndpoints({
   }),
 });
 
-export const { useCreateCategoryMutation,useDeleteCategoryMutation } = productApi;
+export const { useCreateCategoryMutation, useDeleteCategoryMutation } = categoryApi;

@@ -18,7 +18,7 @@ import {
 } from "@/components/ui/table";
 import { Input } from "./input";
 import { Button } from "./button";
-import { TQuery } from "@/types";
+import { TQuery } from "@/app/types/global";
 import { Dispatch, SetStateAction } from "react";
 
 interface DataTableProps<TData, TValue> {

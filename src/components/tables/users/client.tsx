@@ -17,7 +17,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { TQuery } from "@/types";
+import { TQuery } from "@/app/types/global";
 
 export const UserClient = (): any => {
   const params = useParams();

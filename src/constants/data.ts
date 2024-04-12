@@ -1,4 +1,4 @@
-import { NavItem } from "@/types";
+import { NavItem } from "@/app/types/global";
 
 export type TUser = {
   id: number;

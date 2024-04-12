@@ -31,7 +31,7 @@ const CategoryPage = async () => {
         <Heading title='Categories' description='Manage category for your business' />
 
         <Link
-          href={"/dashboard/sub-category/add-sub-category"}
+          href={"/dashboard/category/add-category"}
           className={cn(buttonVariants({ variant: "default" }))}
         >
           <Plus className='w-4 h-4 mr-2' /> Add New

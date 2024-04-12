@@ -1,5 +1,5 @@
 import baseApi from "@/redux/api/baseApi";
-import { TQuery } from "@/types";
+import { TQuery } from "@/app/types/global";
 
 const userApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({

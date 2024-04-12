@@ -8,15 +8,17 @@ type TFormInputProps = {
   label?: string;
   placeholder: string;
   name: string;
+  defaultValue?: string;
+  accept?:string;
 };
 
-const FormInput = ({ loading, type, label, placeholder, name }: TFormInputProps) => {
+const FormInput = ({ loading, type, label, placeholder, name, defaultValue,accept }: TFormInputProps) => {
   const { control } = useFormContext();
 
   return (
     <FormField
       control={control}
-      defaultValue={""}
+      defaultValue={defaultValue}
       name={name}
       render={({ field }) => (
         <FormItem className='w-full'>
@@ -28,6 +30,7 @@ const FormInput = ({ loading, type, label, placeholder, name }: TFormInputProps)
               placeholder={placeholder}
               disabled={loading}
               {...field}
+              accept={accept}
             />
           </FormControl>
           <FormMessage className='text-red' />

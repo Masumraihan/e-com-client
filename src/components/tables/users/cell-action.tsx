@@ -11,7 +11,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useDeleteUserMutation, useUpdateUserMutation } from "@/redux/features/user/userApi";
-import { TResponseUser } from "@/types/user.types";
+import { TResponseUser } from "@/app/types/userTypes";
 import { Edit, MoreHorizontal, Trash, UserX } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";

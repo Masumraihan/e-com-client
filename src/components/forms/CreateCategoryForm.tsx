@@ -7,6 +7,7 @@ import { Button } from "../ui/button";
 import { useCreateCategoryMutation } from "@/redux/features/category/categoryApi";
 import { toast } from "sonner";
 import { useState } from "react";
+import { TCategory } from "@/app/types";
 
 const categorySchema = z.object({
   category: z.string({ required_error: "Category is required" }),
