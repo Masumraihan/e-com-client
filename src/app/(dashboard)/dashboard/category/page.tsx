@@ -16,7 +16,7 @@ const CategoryPage = async () => {
 
   try {
     const res = await fetch(`${process.env.NEXT_BASE_URL}/category/get-all-categories`, {
-      cache: "no-cache",
+      next: { tags: ["categories"] },
     });
     const data = await res.json();
     categories = data.data;

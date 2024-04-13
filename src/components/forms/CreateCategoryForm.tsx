@@ -8,6 +8,7 @@ import { useCreateCategoryMutation } from "@/redux/features/category/categoryApi
 import { toast } from "sonner";
 import { useState } from "react";
 import { TCategory } from "@/app/types";
+import revalidateTags from "@/lib/revalidateTags";
 
 const categorySchema = z.object({
   category: z.string({ required_error: "Category is required" }),
@@ -20,6 +21,7 @@ const CreateCategoryForm = () => {
     setError("");
     try {
       const res = await createCategory(data).unwrap();
+      revalidateTags("categories");
       if (res.success) {
         toast.success(res.message);
       }

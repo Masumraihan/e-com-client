@@ -17,7 +17,7 @@ const SubCategoryPage = async () => {
 
   try {
     const res = await fetch(`${process.env.NEXT_BASE_URL}/sub-category/get-all-sub-categories`, {
-      cache: "no-cache",
+      next: { tags: ["subCategories"] },
     });
     const data = await res.json();
     subCategories = data.data;

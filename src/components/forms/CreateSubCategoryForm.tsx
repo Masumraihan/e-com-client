@@ -12,6 +12,7 @@ import { toast } from "sonner";
 import CustomFileUploader from "./CustomFileUploader";
 import { uploadIntoImageBB } from "@/lib/imageUploader";
 import { TImageBBResponse } from "@/app/types/global";
+import revalidateTags from "@/lib/revalidateTags";
 
 const subCategorySchema = z.object({
   category: z.string({ required_error: "Select a category" }),
@@ -45,6 +46,7 @@ const CreateSubCategoryForm = ({ categories }: { categories: TCategory[] }) => {
 
     try {
       const res = await createSubCategory(subCategoryData).unwrap();
+      revalidateTags("subCategories");
       if (res.success) {
         toast.success(res.message);
       }

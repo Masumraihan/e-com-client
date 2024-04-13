@@ -34,7 +34,7 @@ const ProductsPage = async ({ searchParams }: paramsProps) => {
     const res = await fetch(
       `${url}/product/get-all-products?limit=${pageLimit}&page=${page}&searchTerm=${searchTerm}`,
       {
-        cache: "no-cache",
+        next: { tags: ["products"] },
       },
     );
     const data = await res.json();

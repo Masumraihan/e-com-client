@@ -15,6 +15,7 @@ import MultipleSelector from "../ui/MultipleSelector";
 import { Button } from "../ui/button";
 import CustomFileUploader from "./CustomFileUploader";
 import CustomTextArea from "./CustomTextArea";
+import revalidateTags from "@/lib/revalidateTags";
 
 const keywordsValidationSchema = z.object({
   value: z.string(),
@@ -93,6 +94,7 @@ const CreateProductForm = ({ subCategories }: { subCategories: TSubCategory[] })
     try {
       const res = await createProduct(productData).unwrap();
       if (res.success) {
+        revalidateTags("products");
         toast.success(res.message, {
           id: toastId,
         });
