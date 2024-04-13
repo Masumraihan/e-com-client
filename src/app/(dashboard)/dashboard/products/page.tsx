@@ -33,6 +33,9 @@ const ProductsPage = async ({ searchParams }: paramsProps) => {
   try {
     const res = await fetch(
       `${url}/product/get-all-products?limit=${pageLimit}&page=${page}&searchTerm=${searchTerm}`,
+      {
+        cache: "no-cache",
+      },
     );
     const data = await res.json();
     products = data?.data;
@@ -52,7 +55,10 @@ const ProductsPage = async ({ searchParams }: paramsProps) => {
             description='Manage products for your business'
           />
 
-          <Link href={"/dashboard/products/add-product"} className={cn(buttonVariants({ variant: "default" }))}>
+          <Link
+            href={"/dashboard/products/add-product"}
+            className={cn(buttonVariants({ variant: "default" }))}
+          >
             <Plus className='w-4 h-4 mr-2' /> Add New
           </Link>
         </div>

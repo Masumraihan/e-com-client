@@ -13,7 +13,13 @@ type TCustomFileUploaderProps = {
   placeholder?: string;
 };
 
-const CustomFileUploader = ({ label, name, ...props }: TCustomFileUploaderProps) => {
+const CustomFileUploader = ({
+  label,
+  name,
+  accept,
+  multiple,
+  ...props
+}: TCustomFileUploaderProps) => {
   const { control } = useFormContext();
   return (
     <FormField
@@ -27,8 +33,15 @@ const CustomFileUploader = ({ label, name, ...props }: TCustomFileUploaderProps)
               {...fieldProps}
               placeholder={props.placeholder || "Upload"}
               type='file'
-              accept='*'
-              onChange={(event) => onChange(event.target.files && event.target.files[0])}
+              accept={accept || "*"}
+              multiple={multiple}
+              onChange={(event) => {
+                if (multiple) {
+                  onChange(event.target.files && event.target.files);
+                } else {
+                  onChange(event.target.files && event.target.files[0]);
+                }
+              }}
             />
           </FormControl>
           <FormMessage className='text-red' />

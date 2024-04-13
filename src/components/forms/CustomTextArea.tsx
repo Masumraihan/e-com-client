@@ -1,18 +1,26 @@
 import { useFormContext } from "react-hook-form";
 import { FormControl, FormField, FormItem, FormLabel, FormMessage } from "../ui/form";
-import { Input } from "../ui/input";
+import { Textarea } from "../ui/textarea";
 
 type TFormInputProps = {
   loading?: boolean;
-  type: string;
   label?: string;
   placeholder: string;
   name: string;
   defaultValue?: string;
-  accept?:string;
+  rows?: number;
+  cols?: number;
 };
 
-const FormInput = ({ loading, type, label, placeholder, name, defaultValue,accept }: TFormInputProps) => {
+const CustomTextArea = ({
+  loading,
+  label,
+  placeholder,
+  name,
+  defaultValue,
+  rows,
+  cols,
+}: TFormInputProps) => {
   const { control } = useFormContext();
 
   return (
@@ -24,14 +32,13 @@ const FormInput = ({ loading, type, label, placeholder, name, defaultValue,accep
         <FormItem className='w-full'>
           <FormLabel>{label}</FormLabel>
           <FormControl>
-            <Input
+            <Textarea
               className='focus:!ring-primary w-full'
-              type={type}
               placeholder={placeholder}
               disabled={loading}
+              rows={rows}
+              cols={cols}
               {...field}
-              accept={accept}
-              
             />
           </FormControl>
           <FormMessage className='text-red' />
@@ -41,4 +48,4 @@ const FormInput = ({ loading, type, label, placeholder, name, defaultValue,accep
   );
 };
 
-export default FormInput;
+export default CustomTextArea;

@@ -2,6 +2,14 @@ import baseApi from "@/redux/api/baseApi";
 
 const productApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
+    createProduct: builder.mutation({
+      query: (data) => ({
+        url: "/product/create-product/",
+        method: "POST",
+        body: data,
+      }),
+      invalidatesTags: ["Product"],
+    }),
     getSingleProduct: builder.query({
       query: (id) => ({
         url: "/product/get-single-product/" + id,
@@ -27,5 +35,9 @@ const productApi = baseApi.injectEndpoints({
   }),
 });
 
-export const { useGetSingleProductQuery, useUpdateProductMutation, useDeleteProductMutation } =
-  productApi;
+export const {
+  useCreateProductMutation,
+  useGetSingleProductQuery,
+  useUpdateProductMutation,
+  useDeleteProductMutation,
+} = productApi;

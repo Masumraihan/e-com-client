@@ -13,3 +13,23 @@ export const uploadIntoImageBB = async (formData: FormData) => {
     console.log(error);
   }
 };
+
+export const uploadImagesIntoImageBB = async (uploadedImages: FileList) => {
+  const formDataArray: FormData[] = [];
+
+  if (uploadedImages?.length) {
+    const uploadedImagesArray = Array.from(uploadedImages);
+    uploadedImagesArray.forEach((image: any) => {
+      const formData = new FormData();
+      formData.append("image", image);
+      formDataArray.push(formData);
+    });
+
+    const uploadPromises = formDataArray.map(async (formData) => {
+      return await uploadIntoImageBB(formData);
+    });
+
+    const uploadedImagesResponse = await Promise.all(uploadPromises);
+    return uploadedImagesResponse;
+  }
+};

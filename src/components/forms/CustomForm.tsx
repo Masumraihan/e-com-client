@@ -38,7 +38,7 @@ const CustomForm = ({
 
   const submit: SubmitHandler<TFormValue> = (data) => {
     onSubmit(data);
-    form.reset();
+    //form.reset();
   };
 
   return (

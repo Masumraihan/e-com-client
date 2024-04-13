@@ -27,6 +27,7 @@ const CustomSelect = ({
   label,
   name,
   className,
+  loading,
 }: TCustomSelectProps) => {
   const { control } = useFormContext();
   return (
@@ -38,7 +39,7 @@ const CustomSelect = ({
         <FormItem className={cn("space-y-2 w-full", className)}>
           <FormLabel>{label}</FormLabel>
           <FormControl>
-            <Select onValueChange={field.onChange} defaultValue={field.value}>
+            <Select onValueChange={field.onChange} defaultValue={field.value} disabled={loading}>
               <SelectTrigger>
                 <SelectValue placeholder={placeholder} />
               </SelectTrigger>
