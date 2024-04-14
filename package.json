@@ -44,7 +44,6 @@
     "date-fns": "^2.30.0",
     "embla-carousel-autoplay": "^8.0.0-rc22",
     "embla-carousel-react": "^8.0.0-rc19",
-    "eslint-config-next": "^14.0.1",
     "framer-motion": "^10.17.9",
     "i": "^0.3.7",
     "jwt-decode": "^4.0.0",
@@ -83,7 +82,7 @@
     "autoprefixer": "^10.4.19",
     "encoding": "^0.1.13",
     "eslint": "^8.57.0",
-    "eslint-config-next": "14.0.4",
+    "eslint-config-next": "^14.2.1",
     "postcss": "^8.4.38",
     "tailwindcss": "^3.4.0",
     "typescript": "^5.4.3"

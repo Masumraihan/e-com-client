@@ -15,7 +15,7 @@ export default function Sidebar({ className }: SidebarProps) {
         <div className='px-3 py-2'>
           <h2 className='px-4 mb-2 text-lg font-semibold tracking-tight'>Overview</h2>
           <div className='space-y-1'>
-            <DashboardNav items={navItems} />
+            <DashboardNav items={navItems}  />
           </div>
 
           {/* <ScrollArea className="h-[300px] px-1">

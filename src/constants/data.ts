@@ -286,10 +286,5 @@ export const navItems: NavItem[] = [
     icon: "product",
     label: "product",
   },
-  {
-    title: "Logout",
-    href: "/signin",
-    icon: "login",
-    label: "Logout",
-  },
+  
 ];

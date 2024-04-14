@@ -57,7 +57,7 @@ const ProductCard = ({ product }: { product: TProduct }) => {
           </div>
         </CardContent>
         <CardFooter className='gap-3'>
-          <Link href={`/products/${product.title.trim()}`} className='w-full'>
+          <Link href={`/products/${product?.title?.split(" ").join("-")}`} className='w-full'>
             <Button className='w-full'>
               <ShoppingCart className='w-4 h-4 mr-2' /> Add To Cart
             </Button>

@@ -1,30 +1,25 @@
 "use client";
+import { TQuery } from "@/app/types/global";
 import { DataTable } from "@/components/ui/data-table";
 import { Heading } from "@/components/ui/heading";
-import { Separator } from "@/components/ui/separator";
-import { TUser } from "@/constants/data";
-import { useGetAllUsersQuery } from "@/redux/features/user/userApi";
-import { useParams, useRouter } from "next/navigation";
-import { useState } from "react";
-import { columns } from "./columns";
-import { Button } from "@/components/ui/button";
 import {
   Select,
   SelectContent,
   SelectGroup,
   SelectItem,
-  SelectLabel,
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { TQuery } from "@/app/types/global";
+import { Separator } from "@/components/ui/separator";
+import { useGetAllUsersQuery } from "@/redux/features/user/userApi";
+import { useState } from "react";
+import { columns } from "./columns";
 
 export const UserClient = (): any => {
-  const params = useParams();
-  const router = useRouter();
   const [query, setQuery] = useState<TQuery>([]);
 
   const { data: users, isLoading } = useGetAllUsersQuery(query);
+  console.log(users);
 
   return (
     <>
@@ -58,13 +53,17 @@ export const UserClient = (): any => {
         <p className='text-center'>loading....</p>
       ) : (
         <>
-          <DataTable
-            searchKey='name'
-            columns={columns}
-            data={users?.data}
-            query={query}
-            setQuery={setQuery}
-          />
+          {users && users?.data.length > 0 ? (
+            <DataTable
+              searchKey='name'
+              columns={columns}
+              data={users?.data}
+              query={query}
+              setQuery={setQuery}
+            />
+          ) : (
+            <p className='text-center'>No data found</p>
+          )}
         </>
       )}
     </>

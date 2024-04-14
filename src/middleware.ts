@@ -9,6 +9,7 @@ export function middleware(request: NextRequest) {
     return NextResponse.redirect(new URL("/signin", request.url));
   }
   const user = jwtDecode(token.value) as TTokenUser;
+  console.log(user);
   if ((user && user.role === userRole.admin) || user?.role === userRole.superAdmin) {
     return NextResponse.next();
   } else {

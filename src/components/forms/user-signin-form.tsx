@@ -30,6 +30,7 @@ const UserSignInForm = () => {
   const dispatch = useAppDispatch();
 
   const onSubmit = async (data: UserFormValue) => {
+    setError("");
     setLoading(true);
     try {
       const userInfo = {

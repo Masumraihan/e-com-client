@@ -50,3 +50,8 @@ export const discounts = [
     value: "0",
   },
 ];
+
+export const productStatus = {
+  inStock: "in stock",
+  outOfStock: "out of stock",
+} as const;

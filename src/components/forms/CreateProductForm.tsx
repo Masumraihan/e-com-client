@@ -16,6 +16,7 @@ import { Button } from "../ui/button";
 import CustomFileUploader from "./CustomFileUploader";
 import CustomTextArea from "./CustomTextArea";
 import revalidateTags from "@/lib/revalidateTags";
+import { Label } from "../ui/label";
 
 const keywordsValidationSchema = z.object({
   value: z.string(),
@@ -122,12 +123,15 @@ const CreateProductForm = ({ subCategories }: { subCategories: TSubCategory[] })
       <FormInput label='Size (Optional)' placeholder='Size' name='size' type='text' />
       <FormInput label='Color (Optional)' placeholder='Color' name='color' type='text' />
       <CustomTextArea label='Description' placeholder='Description' name='description' rows={6} />
-      <MultipleSelector
-        placeholder='Add Keywords (refresh the page for any issue)'
-        creatable
-        className='bg-white'
-        onChange={(value) => setKeywords(value)}
-      />
+      <div className='space-y-2'>
+        <Label>Keywords</Label>
+        <MultipleSelector
+          placeholder='Add Keywords (refresh the page for any issue)'
+          creatable
+          className='bg-white'
+          onChange={(value) => setKeywords(value)}
+        />
+      </div>
       {error && <p className='text-sm text-red'>{error}</p>}
       <Button type='submit' disabled={isLoading}>
         Submit

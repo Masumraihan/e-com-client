@@ -40,8 +40,8 @@ const UserSignUpForm = () => {
   const dispatch = useAppDispatch();
 
   const onSubmit = async (data: UserFormValue) => {
-    setLoading(true);
     setError("");
+    setLoading(true);
     if (data.password !== data.confirmPassword) {
       setError("Passwords and confirm password do not match");
       setLoading(false);
