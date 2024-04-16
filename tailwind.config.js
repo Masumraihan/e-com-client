@@ -40,7 +40,7 @@ module.exports = {
         sky: "#32BDE8",
         lightPink: "#F0EEED",
         lightGray: "#616060",
-        green:"#01ab31",
+        green: "#01ab31",
       },
     },
   },

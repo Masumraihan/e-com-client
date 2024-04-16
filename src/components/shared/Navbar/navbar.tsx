@@ -1,7 +1,10 @@
 "use client";
 
+import ThemeToggle from "@/components/layout/ThemeToggle/theme-toggle";
 import MobileNav from "@/components/navbar-components/MobileNav";
 import MobileNavigation from "@/components/navbar-components/MobileNavigation";
+import NavTopPopup from "@/components/navbar-components/NavTopPopup";
+import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
   NavigationMenu,
@@ -12,83 +15,25 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
+import { userRole } from "@/constants/global";
+import { TTokenUser } from "@/redux/features/auth/authSlice";
+import { useGetCategoriesQuery } from "@/redux/features/category/categoryApi";
+import { useGetAllSubCategoriesQuery } from "@/redux/features/subCategory/subCategoryApi";
+import { useAppSelector } from "@/redux/hooks";
 import { Heart, Search, ShoppingCart, User } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
 import { ListItem } from "../../navbar-components/ListItem";
 import CustomTooltip from "../CustomTooltip";
-import { TCategory } from "./navbar.interface";
-import { Button } from "@/components/ui/button";
-import NavTopPopup from "@/components/navbar-components/NavTopPopup";
-import { useAppSelector } from "@/redux/hooks";
-import { TTokenUser, useCurrentUser } from "@/redux/features/auth/authSlice";
-import ThemeToggle from "@/components/layout/ThemeToggle/theme-toggle";
-import { useEffect, useState } from "react";
-import { userRole } from "@/constants/global";
+import { TCategory } from "@/app/types";
 
-const categories = [
-  "Plain",
-  "Graphic",
-  "V-neck",
-  "Crewneck",
-  "Black",
-  "Vintage",
-  "Longsleeve",
-  "Striped",
-  "Logo",
-  "Polo",
-  "Oversized",
-  "Sports",
-  "TieDye",
-  "Customized",
-  "Band",
-  "Floral",
-  "Neon",
-  "Crop",
-  "Linen",
-  "Organic",
-] as const;
-
-const ProductCategories: TCategory[] = [
-  {
-    title: "Men",
-    href: "/men",
-    description:
-      "A modal dialog that interrupts the user with important content and expects a response.",
-  },
-  {
-    title: "Women",
-    href: "/women",
-    description: "For sighted users to preview content available behind a link.",
-  },
-  {
-    title: "Kids",
-    href: "/docs/primitives/progress",
-    description:
-      "Displays an indicator showing the completion progress of a task, typically displayed as a progress bar.",
-  },
-  {
-    title: "Top",
-    href: "/docs/primitives/scroll-area",
-    description: "Visually or semantically separates content.",
-  },
-  {
-    title: "New",
-    href: "/docs/primitives/tabs",
-    description:
-      "A set of layered sections of content—known as tab panels—that are displayed one at a time.",
-  },
-  {
-    title: "Membership",
-    href: "/docs/primitives/tooltip",
-    description:
-      "A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.",
-  },
-];
 const Navbar = () => {
   const pathname = usePathname();
   const [user, setUser] = useState<TTokenUser | null>(null);
   const currentUser = useAppSelector((state) => state.auth.user);
+  const { data: subCategories, isLoading } = useGetAllSubCategoriesQuery(undefined);
+  const { data: categories, isLoading: isLoadingCategories } = useGetCategoriesQuery(undefined);
 
   useEffect(() => {
     setUser(currentUser);
@@ -103,7 +48,11 @@ const Navbar = () => {
       ) : (
         <div className='container flex items-center justify-between w-full py-4 mx-auto '>
           <div className='lg:hidden'>
-            <MobileNav categories={ProductCategories} />
+            <MobileNav
+              categories={categories?.data}
+              subCategories={subCategories?.data}
+              user={user}
+            />
           </div>
           <Link href='/' className='text-3xl font-extrabold md:text-3xl text-primary'>
             E Com
@@ -116,12 +65,13 @@ const Navbar = () => {
                     <span className='text-base'>Shop</span>
                   </NavigationMenuTrigger>
                   <NavigationMenuContent>
-                    <ul className='grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] '>
-                      {ProductCategories.map((category) => (
-                        <ListItem key={category.title} title={category.title} href={category.href}>
-                          {category.description}
-                        </ListItem>
-                      ))}
+                    <ul className='grid w-[400px] gap-4 p-4 md:w-[500px] md:grid-cols-2 lg:grid-cols-3 lg:w-[600px] '>
+                      {!isLoadingCategories &&
+                        categories?.data?.map((category: TCategory) => (
+                          <li className='border-b cursor-pointer' key={category?.category}>
+                            <ListItem title={category?.category} />
+                          </li>
+                        ))}
                     </ul>
                   </NavigationMenuContent>
                 </NavigationMenuItem>

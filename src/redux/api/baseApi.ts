@@ -7,11 +7,11 @@ import {
   createApi,
   fetchBaseQuery,
 } from "@reduxjs/toolkit/query/react";
-import { TTokenUser, login, logout } from "../features/auth/authSlice";
-import { jwtDecode } from "jwt-decode";
+
+const baseUrl = `https://e-com-server-seven.vercel.app/api/v1`;
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: "http://localhost:8080/api/v1",
+  baseUrl: baseUrl,
   credentials: "include",
   prepareHeaders: (headers, { getState }) => {
     const token = (getState() as RootState).auth.token;

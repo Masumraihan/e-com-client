@@ -1,5 +1,6 @@
 "use client";
-import { Rating, ThinStar } from "@smastrom/react-rating";
+import Autoplay from "embla-carousel-autoplay";
+import ReviewCard from "../ui/ReviewCard";
 import {
   Carousel,
   CarouselContent,
@@ -7,9 +8,6 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "../ui/carousel";
-import { Check } from "lucide-react";
-import Autoplay from "embla-carousel-autoplay";
-import ReviewCard from "../ui/ReviewCard";
 
 type TReview = {
   id: number;

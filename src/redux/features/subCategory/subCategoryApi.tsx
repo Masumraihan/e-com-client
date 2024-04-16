@@ -2,6 +2,13 @@ import baseApi from "@/redux/api/baseApi";
 
 const subCategoryApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
+    getAllSubCategories: builder.query({
+      query: () => ({
+        url: "/sub-category/get-all-sub-categories",
+        method: "GET",
+      }),
+    }),
+
     createSubCategory: builder.mutation({
       query: (data) => ({
         url: "/sub-category/create-sub-category",
@@ -18,4 +25,8 @@ const subCategoryApi = baseApi.injectEndpoints({
   }),
 });
 
-export const { useCreateSubCategoryMutation, useDeleteSubCategoryMutation } = subCategoryApi;
+export const {
+  useGetAllSubCategoriesQuery,
+  useCreateSubCategoryMutation,
+  useDeleteSubCategoryMutation,
+} = subCategoryApi;

@@ -7,8 +7,8 @@ const SignUpPage = () => {
   return (
     <div className='relative flex-col items-center justify-center min-h-screen lg:overflow-hidden lg:max-w-none lg:px-0'>
       <Link href={"/"} className='absolute top-4 left-4'>
-        <Button className='gap-2'>
-          <ChevronLeft /> Back to Home Page
+        <Button className='gap-2' variant='outline' size='sm'>
+          <ChevronLeft /> <span className='hidden lg:inline-block'>Back to Home Page</span>
         </Button>
       </Link>
       <div className='flex items-center h-full p-4 border lg:p-8'>

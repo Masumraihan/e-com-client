@@ -1,13 +1,29 @@
+import { TCategory, TSubCategory } from "@/app/types";
 import { Button } from "@/components/ui/button";
-import { Sheet, SheetContent, SheetHeader, SheetTrigger } from "@/components/ui/sheet";
-import { Heart, Menu, ShoppingCart, User } from "lucide-react";
+import {
+  Sheet,
+  SheetClose,
+  SheetContent,
+  SheetFooter,
+  SheetHeader,
+  SheetTrigger,
+} from "@/components/ui/sheet";
+import { Menu } from "lucide-react";
 import Link from "next/link";
-import React from "react";
-import { TCategory } from "../shared/Navbar/navbar.interface";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "../ui/accordion";
+import { TTokenUser } from "@/redux/features/auth/authSlice";
+import MobileLoginLogoutButton from "../ui/MobileLoginLogoutButton";
 
-const MobileNav = ({ categories }: { categories: TCategory[] }) => {
-  const user = true;
+type TMobileNavProps = {
+  categories: TCategory[] | undefined;
+  subCategories: TSubCategory[] | undefined;
+  user: TTokenUser | null | undefined;
+};
+
+const MobileNav = ({ categories, subCategories, user }: TMobileNavProps) => {
+  //const categories = categories?.map((subCategory: TSubCategory) => {
+  //  return subCategory.category.category;
+  //});
 
   return (
     <Sheet>
@@ -23,68 +39,36 @@ const MobileNav = ({ categories }: { categories: TCategory[] }) => {
         <div className='pb-2 border-b-2 border-primary'></div>
 
         <Accordion type='single' collapsible className='w-full'>
-          <AccordionItem value='item-1'>
-            <AccordionTrigger className='hover:no-underline'>Men</AccordionTrigger>
-            <AccordionContent>Polo T-shirt</AccordionContent>
-            <AccordionContent>Half T-shirt</AccordionContent>
-          </AccordionItem>
-          <AccordionItem value='item-2'>
-            <AccordionTrigger className='hover:no-underline'>Women T-shirt</AccordionTrigger>
-            <AccordionContent>Polo T-shirt</AccordionContent>
-            <AccordionContent>Half T-shirt</AccordionContent>
-          </AccordionItem>
-          <AccordionItem value='item-3'>
-            <AccordionTrigger className='hover:no-underline'>Kids</AccordionTrigger>
-            <AccordionContent>Kids Jacket</AccordionContent>
-            <AccordionContent>Kids Dresses</AccordionContent>
-          </AccordionItem>
+          {categories?.length &&
+            categories?.map((category: TCategory) => (
+              <AccordionItem value={category.category}>
+                <AccordionTrigger className='hover:no-underline'>
+                  {category.category}
+                </AccordionTrigger>
+                {subCategories
+                  ?.filter(
+                    (subCategory: TSubCategory) =>
+                      subCategory.category.category === category.category,
+                  )
+                  .map((subCategory: TSubCategory) => (
+                    <AccordionContent className='text-primary'>
+                      <Link
+                        href={`/category/${subCategory.category.category}/${subCategory.subCategory}`}
+                        className='hover:no-underline'
+                      >
+                        {subCategory.subCategory}
+                      </Link>
+                    </AccordionContent>
+                  ))}
+              </AccordionItem>
+            ))}
         </Accordion>
 
-        {/*<NavigationMenu className='w-full mt-3 ml-auto overflow-y-auto'>
-          <NavigationMenuList className='flex-col items-end justify-end '>
-            <NavigationMenuItem>
-              <CollapsibleMenu categoryName="Winterwear'23" />
-            </NavigationMenuItem>
-            <NavigationMenuItem>
-              <CollapsibleMenu categoryName='Topwear' />
-            </NavigationMenuItem>
-            <NavigationMenuItem>
-              <CollapsibleMenu categoryName='Bottomwear' />
-            </NavigationMenuItem>
-            <NavigationMenuItem>
-              <Link href='/' legacyBehavior passHref>
-                <NavigationMenuLink
-                  className={`font-bold pr-5 uppercase ${navigationMenuTriggerStyle()}`}
-                >
-                  Sneakers
-                </NavigationMenuLink>
-              </Link>
-            </NavigationMenuItem>
-            <NavigationMenuItem>
-              <CollapsibleMenu categoryName='Accessories ' />
-            </NavigationMenuItem>
-            <NavigationMenuItem>
-              <CollapsibleMenu categoryName='Collections ' />
-            </NavigationMenuItem>
-            <NavigationMenuItem>
-              <CollapsibleMenu categoryName='Shop by Themes ' />
-            </NavigationMenuItem>
-            <NavigationMenuItem className=''>
-              <Link href='/' legacyBehavior passHref>
-                <NavigationMenuLink
-                  className={`font-bold pr-5 uppercase ${navigationMenuTriggerStyle()}`}
-                >
-                  Membership
-                </NavigationMenuLink>
-              </Link>
-            </NavigationMenuItem>
-          </NavigationMenuList>
-        </NavigationMenu>*/}
-        {/*<SheetFooter className='absolute left-0 w-full px-3 bottom-5'>
-          <SheetClose className='w-full' asChild>
-            <Button>Login</Button>
-          </SheetClose>
-        </SheetFooter>*/}
+        <SheetFooter className='absolute left-0 w-full px-3 bottom-5'>
+          <MobileLoginLogoutButton user={user} />
+          {/*<SheetClose className='w-full' asChild>
+          </SheetClose>*/}
+        </SheetFooter>
       </SheetContent>
     </Sheet>
   );

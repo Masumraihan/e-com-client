@@ -1,6 +1,6 @@
 import Arrivals from "@/components/homepage-components/Arrivals";
 import Banner from "@/components/homepage-components/Banner";
-import Brands from "@/components/homepage-components/Brands";
+import SubCategories from "@/components/homepage-components/SubCategories";
 import Categories from "@/components/homepage-components/Categories";
 import DressStyle from "@/components/homepage-components/DressStyle";
 import NewCollections from "@/components/homepage-components/NewCollections";

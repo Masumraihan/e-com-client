@@ -4,7 +4,7 @@ import smallStar from "../../../public/Icons/Vector (1).png";
 import largeStar from "../../../public/Icons/Vector.png";
 import BannerCounter from "../ui/BannerCounter";
 import { Button } from "../ui/button";
-import Brands from "./Brands";
+import SubCategories from "./SubCategories";
 
 const Banner = () => {
   return (
@@ -48,7 +48,7 @@ const Banner = () => {
           </div>
         </div>
       </div>
-      <Brands />
+      <SubCategories />
     </section>
   );
 };
