@@ -63,7 +63,7 @@ const UserSignInForm = () => {
 
   return (
     <>
-      <CustomForm className='space-y-2' onSubmit={onSubmit} resolver={zodResolver(formSchema)}>
+      <CustomForm className='space-y-2' onSubmit={onSubmit} resolver={zodResolver(formSchema)} defaultValues={defaultValues}>
         <FormInput
           loading={loading}
           type='email'
