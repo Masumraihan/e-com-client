@@ -1,6 +1,9 @@
 # E Commerce System
 
-This is a Blood Donation System designed to facilitate blood donation requests, user registration, login, and blood donation processes. Users can register, log in, create blood donation requests, and donate blood.
+<!-- project description following technologies -->
+## Project Description
+
+E-Commerce System is an online platform for buying and selling products. The platform is designed to be user-friendly and easy to use. The platform is built using Next.js, TypeScript, Redux, Tailwind, Shadcn UI, and Next.js middleware for authentication.
 
 ## Features
 
