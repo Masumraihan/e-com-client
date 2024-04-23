@@ -8,6 +8,7 @@ import ProductCard from "../ui/ProductCard";
 import ProductMobileViewCarousel from "../ui/ProductMobileViewCarousel";
 import { Button } from "../ui/button";
 import victor from "../../../public/victors/Vector3.png";
+import { TProduct } from "@/app/types";
 
 type TArrival = {
   id: number;
@@ -51,6 +52,25 @@ const arrivals: TArrival[] = [
   },
 ];
 
+const product: TProduct = {
+  _id: "1",
+  title: "Comfortable Sofa",
+  description: "A cozy sofa perfect for relaxing evenings.",
+  price: 599,
+  subCategory: "Living Room Furniture",
+  images: ["sofa1.jpg", "sofa2.jpg"],
+  quantity: 10,
+  discount: 0,
+  status: "in stock",
+  user: "user123",
+  size: "72x36x32",
+  color: "Gray",
+  keywords: [{ value: "sofa", isDelete: false }],
+  isDeleted: false,
+  createdAt: "2024-04-16T12:00:00Z",
+  updatedAt: "2024-04-16T12:00:00Z",
+};
+
 const NewCollections = () => {
   return (
     <div className='relative'>
@@ -64,7 +84,7 @@ const NewCollections = () => {
         <h2 className='mb-2 text-3xl font-extrabold text-center md:text-3xl'>New Collections</h2>
         <div className='hidden grid-cols-1 gap-5 mt-4 lg:grid md:grid-cols-3 lg:grid-cols-4'>
           {arrivals.map((arrival) => (
-            <ProductCard key={arrival.id} product={arrival} />
+            <ProductCard key={arrival.id} product={product} />
           ))}
         </div>
         <div className='lg:hidden'>

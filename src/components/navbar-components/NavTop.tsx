@@ -82,7 +82,7 @@ const NavTop = () => {
   const pathname = usePathname();
   return (
     <>
-      {pathname?.split("/")?.includes("dashboard") || pathname?.split("/")?.includes("signin") ? (
+      {/*{pathname?.split("/")?.includes("dashboard") || pathname?.split("/")?.includes("signin") ? (
         ""
       ) : (
         <div className='container flex items-center justify-between w-full py-2 mx-auto'>
@@ -148,7 +148,7 @@ const NavTop = () => {
             </ul>
           </div>
         </div>
-      )}
+      )}*/}
     </>
   );
 };

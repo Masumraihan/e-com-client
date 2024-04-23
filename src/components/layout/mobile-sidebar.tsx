@@ -19,14 +19,12 @@ export function MobileSidebar({ className }: SidebarProps) {
         <SheetTrigger asChild>
           <MenuIcon />
         </SheetTrigger>
-        <SheetContent side="left" className="!px-0 bg-white">
-          <div className="py-4 space-y-4">
-            <div className="px-3 py-2">
-              <h2 className="px-4 mb-2 text-lg font-semibold tracking-tight">
-                Overview
-              </h2>
-              <div className="space-y-1">
-                <DashboardNav items={navItems} setOpen={setOpen} />
+        <SheetContent side='left' className='!px-0 bg-white'>
+          <div className='py-4 space-y-4'>
+            <div className='px-3 py-2'>
+              <h2 className='px-4 mb-2 text-lg font-semibold tracking-tight'>Overview</h2>
+              <div className='space-y-1'>
+                <DashboardNav items={navItems} />
               </div>
             </div>
           </div>

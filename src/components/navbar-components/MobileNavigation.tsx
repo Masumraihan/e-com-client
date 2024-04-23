@@ -1,8 +1,6 @@
-import { Heart, Home, Search, ShoppingCart, User } from "lucide-react";
-import { Button } from "../ui/button";
-import NavTopPopup from "./NavTopPopup";
+import { Home, ShoppingCart, User } from "lucide-react";
 import Link from "next/link";
-import { useState } from "react";
+import { Button } from "../ui/button";
 
 const MobileNavigation = () => {
   return (

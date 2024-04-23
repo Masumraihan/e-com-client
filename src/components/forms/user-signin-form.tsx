@@ -42,7 +42,9 @@ const UserSignInForm = () => {
         const user = jwtDecode(res.data.accessToken) as TTokenUser;
         dispatch(login({ user, token: res.data.accessToken }));
         if (user?.role === userRole.admin || user?.role === userRole.superAdmin) {
+          console.log(user, "from sign in");
           router.push("/dashboard");
+          console.log("from ");
         } else {
           router.push("/");
         }
@@ -52,6 +54,11 @@ const UserSignInForm = () => {
     } finally {
       setLoading(false);
     }
+  };
+
+  const defaultValues = {
+    email: "mdmasumraihan1@gmail.com",
+    password: "superAdmin@123",
   };
 
   return (

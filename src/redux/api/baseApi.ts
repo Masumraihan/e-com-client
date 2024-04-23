@@ -8,11 +8,12 @@ import {
   fetchBaseQuery,
 } from "@reduxjs/toolkit/query/react";
 
-const baseUrl = `https://e-com-server-seven.vercel.app/api/v1`;
+//const baseUrl = `https://e-com-server-seven.vercel.app/api/v1`;
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: baseUrl,
+  baseUrl: `https://e-com-server-seven.vercel.app/api/v1`,
   credentials: "include",
+
   prepareHeaders: (headers, { getState }) => {
     const token = (getState() as RootState).auth.token;
     if (token) {
