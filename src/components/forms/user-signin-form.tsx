@@ -41,10 +41,10 @@ const UserSignInForm = () => {
       if (res?.success) {
         const user = jwtDecode(res.data.accessToken) as TTokenUser;
         dispatch(login({ user, token: res.data.accessToken }));
+        
         if (user?.role === userRole.admin || user?.role === userRole.superAdmin) {
-          console.log(user, "from sign in");
+          console.log(user, "from login");
           router.push("/dashboard");
-          console.log("from ");
         } else {
           router.push("/");
         }
@@ -63,7 +63,12 @@ const UserSignInForm = () => {
 
   return (
     <>
-      <CustomForm className='space-y-2' onSubmit={onSubmit} resolver={zodResolver(formSchema)} defaultValues={defaultValues}>
+      <CustomForm
+        className='space-y-2'
+        onSubmit={onSubmit}
+        resolver={zodResolver(formSchema)}
+        defaultValues={defaultValues}
+      >
         <FormInput
           loading={loading}
           type='email'

@@ -39,20 +39,20 @@ const SubCategories = async () => {
           <CarouselPrevious className='absolute left-0 z-10 ml-auto -translate-y-1/2 top-1/2 ' />
           <CarouselNext className='absolute right-0 z-10 -translate-y-1/2 top-1/2' />
 
-          <CarouselContent className='justify-center gap-2'>
+          <CarouselContent className='items-center justify-center gap-2'>
             {subCategories.map((subCategory: TSubCategory) => (
               <CarouselItem key={subCategory._id} className='basis-1/3 md:basis-1/6 lg:basis-1/12'>
                 <Link
                   href={`/category/${subCategory.category.category}/${subCategory.subCategory}`}
-                  className='flex flex-col items-center justify-center gap-1'
+                  className='flex flex-col items-center justify-center gap-1 duration-200 hover:scale-105'
                 >
-                  <Image
+                  {/*<Image
                     width={50}
                     height={50}
                     src={subCategory.icon}
                     alt={subCategory.subCategory}
                     className='rounded-full'
-                  />
+                  />*/}
                   <p>{subCategory.subCategory}</p>
                 </Link>
               </CarouselItem>

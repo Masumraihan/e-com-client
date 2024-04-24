@@ -1,7 +1,5 @@
 # E Commerce System
 
-<!-- project description following technologies -->
-
 ## Project Description
 
 E-Commerce System is an online platform for buying and selling products. The platform is designed to be user-friendly and easy to use. The platform is built using Next.js, TypeScript, Redux, Tailwind, Shadcn UI, and Next.js middleware for authentication.
@@ -33,13 +31,13 @@ E-Commerce System is an online platform for buying and selling products. The pla
 
 2. Install dependencies:
 
-  ```base
-    npm install
-  ```
+```base
+  npm install
+```
 
-  ```base
-    npm run dev
-  ```
+```base
+  npm run dev
+```
 
 ## Live Demo
 

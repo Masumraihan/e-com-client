@@ -19,7 +19,7 @@ export default function SignInPage() {
             <ChevronLeft /> <span className='hidden lg:inline-block'>Back to Home Page</span>
           </Button>
         </Link>
-        <div className='flex items-center h-full p-4 border lg:p-8'>
+        <div className='flex items-center h-full p-4 lg:p-8'>
           <div className='mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]'>
             <div className='flex flex-col space-y-2 text-center'>
               <h1 className='text-2xl font-semibold tracking-tight'>Sign in your account</h1>
