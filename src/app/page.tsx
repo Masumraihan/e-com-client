@@ -3,7 +3,7 @@ import Banner from "@/components/homepage-components/Banner";
 import SubCategories from "@/components/homepage-components/SubCategories";
 import Categories from "@/components/homepage-components/Categories";
 import DressStyle from "@/components/homepage-components/DressStyle";
-import NewCollections from "@/components/homepage-components/NewCollections";
+import TopSales from "@/components/homepage-components/TopSales";
 import Reviews from "@/components/homepage-components/Reviews";
 import TopCollections from "@/components/homepage-components/TopCollections";
 
@@ -11,11 +11,11 @@ const Home = () => {
   return (
     <main className='relative space-y-10 lg:space-y-20'>
       <Banner />
-      {/*<Categories />*/}
+      <Categories />
       <Arrivals />
-      <NewCollections />
-      <TopCollections />
-      <DressStyle />
+      {/*<TopSales />*/}
+      {/*<TopCollections />*/}
+      {/*<DressStyle />*/}
       <Reviews />
     </main>
   );

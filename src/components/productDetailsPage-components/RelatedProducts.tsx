@@ -78,7 +78,7 @@ const RelatedProducts = () => {
         ))}
       </div>
       <div className='lg:hidden'>
-        <ProductMobileViewCarousel products={arrivals} Card={ProductCard} />
+        {/*<ProductMobileViewCarousel products={arrivals} Card={ProductCard} />*/}
       </div>
     </div>
   );

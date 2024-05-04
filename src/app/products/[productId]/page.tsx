@@ -1,20 +1,29 @@
+import { TProduct } from "@/app/types";
 import BreadCrumb from "@/components/breadcrumb";
 import DetailsTabs from "@/components/productDetailsPage-components/DetailsTabs";
-import RelatedProducts from "@/components/productDetailsPage-components/RelatedProducts";
 import AddToCard from "@/components/ui/AddToCard";
 import ProductImages from "@/components/ui/ProductImages";
 import SelectColor from "@/components/ui/SelectColor";
 import SelectSize from "@/components/ui/SelectSize";
 import { Rating, ThinStar } from "@smastrom/react-rating";
 
-const ProductDetails = ({ params }: { params: { productId: string } }) => {
+const ProductDetailsPage = async ({ params }: { params: { productId: string } }) => {
+  const res = await fetch(
+    `${process.env.NEXT_BASE_URL}/product/get-single-product/${params.productId}`,
+    {
+      cache: "no-store",
+    },
+  );
+  const { data }: { data: TProduct } = await res.json();
+  console.log(data, "data");
+
   const breadcrumb = [
     {
       title: "Home",
       link: "/",
     },
     {
-      title: params.productId,
+      title: data?.title,
       link: "/products",
     },
   ];
@@ -23,11 +32,13 @@ const ProductDetails = ({ params }: { params: { productId: string } }) => {
     <div className='mt-[80px] container'>
       <BreadCrumb items={breadcrumb} />
       <div className='mb-6 md:hidden'>
-        <AddToCard />
+        <AddToCard productId={data._id} productStock={data.quantity} />
       </div>
       <div className='space-y-10'>
         <div className='grid gap-10 lg:grid-cols-2'>
-          <ProductImages />
+          <div>
+            <ProductImages images={data.images} />
+          </div>
           <div className='space-y-4'>
             <h1 className='text-2xl font-semibold'>Product Name</h1>
             <div className='flex items-center gap-1'>
@@ -46,38 +57,44 @@ const ProductDetails = ({ params }: { params: { productId: string } }) => {
             </div>
             <div className='flex items-center gap-2 pt-2 text-xl font-semibold'>
               <span className='text-2xl'>$200</span>
-              <span className='text-gray-400 line-through group-last:hidden'>$200</span>
+              <span className='text-gray-400 line-through group-last:hidden'>{data.price}</span>
               {/* {product.discount && */}
-              {true && (
-                <span className='px-2 py-0.5 text-xs rounded bg-red/10 text-red'>{20}%</span>
+              {data.discount && (
+                <span className='px-2 py-0.5 text-xs rounded bg-red/10 text-red'>
+                  {data.discount}%
+                </span>
               )}
             </div>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis, fugiat? Veritatis
-              enim qui amet! Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis,
-              fugiat? Veritatis enim qui amet!
-            </p>
+            <p>{data.description}</p>
             <hr />
+            {data.color && (
+              <>
+                <div>
+                  <h3 className='mb-3 text-lightGray'>Select Color</h3>
+                  <SelectColor />
+                </div>
+                <hr />
+              </>
+            )}
+            {data.size && (
+              <>
+                <div>
+                  <h3 className='mb-3 text-lightGray'>Select Size</h3>
+                  <SelectSize />
+                </div>
+                <hr />
+              </>
+            )}
             <div>
-              <h3 className='mb-3 text-lightGray'>Select Color</h3>
-              <SelectColor />
-            </div>
-            <hr />
-            <div>
-              <h3 className='mb-3 text-lightGray'>Select Size</h3>
-              <SelectSize />
-            </div>
-            <hr />
-            <div>
-              <AddToCard />
+              <AddToCard productId={data._id} productStock={data.quantity} />
             </div>
           </div>
         </div>
-        <DetailsTabs />
-        <RelatedProducts />
+        <DetailsTabs product={data} />
+        {/*<RelatedProducts />*/}
       </div>
     </div>
   );
 };
 
-export default ProductDetails;
+export default ProductDetailsPage;

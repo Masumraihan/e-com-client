@@ -1,4 +1,5 @@
 import { TSubCategory } from "@/app/types";
+import Link from "next/link";
 import {
   Carousel,
   CarouselContent,
@@ -6,8 +7,6 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "../ui/carousel";
-import Image from "next/image";
-import Link from "next/link";
 //import Autoplay from "embla-carousel-autoplay";
 const getSubCategories = async () => {
   try {
@@ -34,7 +33,7 @@ const SubCategories = async () => {
             dragFree: true,
           }}
           //plugins={[Autoplay({ delay: 3000 })]}
-          className='relative w-full'
+          className='container relative w-full'
         >
           <CarouselPrevious className='absolute left-0 z-10 ml-auto -translate-y-1/2 top-1/2 ' />
           <CarouselNext className='absolute right-0 z-10 -translate-y-1/2 top-1/2' />

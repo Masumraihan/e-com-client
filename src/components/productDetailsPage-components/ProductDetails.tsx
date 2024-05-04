@@ -1,47 +1,56 @@
-import { MoveRight } from "lucide-react";
+import { TProduct } from "@/app/types";
 import { Badge } from "../ui/badge";
 
-const ProductDetails = () => {
+const ProductDetails = ({ product }: { product: TProduct }) => {
+  const { title, description, price, size, color, status } = product;
   return (
     <div className='space-y-6'>
       <div className='space-y-2'>
         <h5 className='font-bold'>Description</h5>
-        <p className='text-sm'>
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Perferendis ut asperiores ipsum
-          minus. Quis ex odit at voluptatum. Ratione libero quia blanditiis illo? Lorem ipsum dolor
-          sit, amet consectetur adipisicing elit. Perferendis ut asperiores ipsum minus. Quis ex
-          odit at voluptatum. Ratione libero quia blanditiis illo? Lorem ipsum dolor sit, amet
-          consectetur adipisicing elit. Perferendis ut asperiores ipsum minus. Quis ex odit at
-          voluptatum. Ratione libero quia blanditiis illo?
-        </p>
+        <p className='text-sm'>{description}</p>
       </div>
       <div className='grid grid-cols-2 max-w-[250px]'>
-        <div className='space-y-3'>
-          <h5 className='font-semibold py-[0.5px]'>Name</h5>
-          <h5 className='font-semibold py-[0.5px]'>Brand</h5>
-          <h5 className='font-semibold py-[0.5px]'>Size</h5>
-          <h5 className='font-semibold py-[0.5px]'>Gender</h5>
-          <h5 className='font-semibold py-[0.5px]'>Color</h5>
+        <p>Name</p>
+        <Badge className='text-sm' variant={"outline"}>
+          {title}
+        </Badge>
+      </div>
+      <div className='grid grid-cols-2 max-w-[250px]'>
+        <p>Brand</p>
+        <Badge className='text-sm' variant={"outline"}>
+          Brand Name
+        </Badge>
+      </div>
+      <div className='grid grid-cols-2 max-w-[250px]'>
+        <p>Price</p>
+        <Badge className='text-sm' variant={"outline"}>
+          {price}
+        </Badge>
+      </div>
+      {size && (
+        <div className='grid grid-cols-2 max-w-[250px]'>
+          <p>Size</p>
+          <Badge className='text-sm' variant={"outline"}>
+            {size}
+          </Badge>
         </div>
-        <div className='flex flex-col gap-3 w-fit'>
-          <>
-            <Badge className='text-sm' variant={"outline"}>
-              T Shirt
-            </Badge>
-            <Badge className='text-sm' variant={"outline"}>
-              XXL
-            </Badge>
-            <Badge className='text-sm ' variant={"outline"}>
-              Brand Name
-            </Badge>
-            <Badge className='text-sm ' variant={"outline"}>
-              Male
-            </Badge>
-            <Badge className='text-sm ' variant={"outline"}>
-              Black
-            </Badge>
-          </>
+      )}
+      {color && (
+        <div className='grid grid-cols-2 max-w-[250px]'>
+          <p>Size</p>
+          <Badge className='text-sm' variant={"outline"}>
+            {size}
+          </Badge>
         </div>
+      )}
+      <div className='grid grid-cols-2 max-w-[250px]'>
+        <p>Availability</p>
+        <Badge
+          className={`text-sm capitalize ${status === "in stock" ? "text-green" : "text-red"} `}
+          variant={"outline"}
+        >
+          {status}
+        </Badge>
       </div>
     </div>
   );

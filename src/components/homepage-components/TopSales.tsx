@@ -71,7 +71,7 @@ const product: TProduct = {
   updatedAt: "2024-04-16T12:00:00Z",
 };
 
-const NewCollections = () => {
+const TopSales = () => {
   return (
     <div className='relative'>
       <Image
@@ -81,14 +81,14 @@ const NewCollections = () => {
         className='absolute bottom-0 right-0 rotate-180 '
       />
       <div className='container mx-auto mt-10'>
-        <h2 className='mb-2 text-3xl font-extrabold text-center md:text-3xl'>New Collections</h2>
+        <h2 className='mb-2 text-3xl font-extrabold text-center md:text-3xl'>Top Sales</h2>
         <div className='hidden grid-cols-1 gap-5 mt-4 lg:grid md:grid-cols-3 lg:grid-cols-4'>
           {arrivals.map((arrival) => (
             <ProductCard key={arrival.id} product={product} />
           ))}
         </div>
         <div className='lg:hidden'>
-          <ProductMobileViewCarousel products={arrivals} Card={ProductCard} />
+          {/*<ProductMobileViewCarousel products={arrivals} Card={ProductCard} />*/}
         </div>
         <div className='flex justify-center mt-6'>
           <Button variant='outline' size='lg' className='mx-auto hover:no-underline rounded-3xl'>
@@ -100,4 +100,4 @@ const NewCollections = () => {
   );
 };
 
-export default NewCollections;
+export default TopSales;

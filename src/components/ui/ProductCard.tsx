@@ -6,25 +6,18 @@ import { Button } from "./button";
 import Link from "next/link";
 import { TProduct } from "@/app/types";
 
-type TArrival = {
-  id: number;
-  name: string;
-  price: number;
-  category: string;
-  image: StaticImageData;
-  discount?: number;
-};
 const ProductCard = ({ product }: { product: TProduct }) => {
   return (
     <div className='relative overflow-hidden group'>
       <Card>
         <CardHeader className='p-2'>
-          {/*<Image
-            placeholder='blur'
-            src={product.image}
-            alt={product.name}
-            className='object-cover w-full h-full rounded '
-          />*/}
+          <Image
+            src={product.images[0]}
+            width={100}
+            height={100}
+            alt='product image'
+            className='object-cover w-full h-full rounded max-h-[200px]'
+          />
         </CardHeader>
         <CardContent className='grid space-y-1'>
           <CardTitle className='lg:text-xl'>{product.title}</CardTitle>
@@ -43,9 +36,7 @@ const ProductCard = ({ product }: { product: TProduct }) => {
             />{" "}
             4/5
           </div>
-          <CardDescription>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dicta, doloremque!
-          </CardDescription>
+          <CardDescription>{product.description}</CardDescription>
           <div className='flex items-center gap-2 pt-2 text-xl font-semibold'>
             <span className='text-red'>${product.price}</span>
             <span className='text-gray-400 line-through group-last:hidden'>${product.price}</span>
@@ -57,7 +48,7 @@ const ProductCard = ({ product }: { product: TProduct }) => {
           </div>
         </CardContent>
         <CardFooter className='gap-3'>
-          <Link href={`/products/${product?.title?.split(" ").join("-")}`} className='w-full'>
+          <Link href={`/products/${product?._id}`} className='w-full'>
             <Button className='w-full'>
               <ShoppingCart className='w-4 h-4 mr-2' /> Add To Cart
             </Button>

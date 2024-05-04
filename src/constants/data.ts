@@ -286,5 +286,4 @@ export const navItems: NavItem[] = [
     icon: "product",
     label: "product",
   },
-  
 ];

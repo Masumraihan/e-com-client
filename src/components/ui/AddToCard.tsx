@@ -6,9 +6,8 @@ import { Button } from "./button";
 import { Input } from "./input";
 import { toast } from "sonner";
 
-const AddToCard = () => {
+const AddToCard = ({ productStock, productId }: { productStock: number; productId: string }) => {
   const [quantity, setQuantity] = useState(1);
-  const productStock = 3;
 
   if (quantity > productStock) {
     toast.error("Out of stock", {
