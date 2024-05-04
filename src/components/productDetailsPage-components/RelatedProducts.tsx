@@ -1,19 +1,7 @@
-import ProductMobileViewCarousel from "../ui/ProductMobileViewCarousel";
-import Image, { StaticImageData } from "next/image";
-import arrival1 from "../../../public/Products/image 10 (1).png";
-import arrival2 from "../../../public/Products/image 10.png";
-import arrival3 from "../../../public/Products/image 7 (1).png";
-import arrival4 from "../../../public/Products/image 7 (2).png";
-import ProductCard from "../ui/ProductCard";
 import { TProduct } from "@/app/types";
-type TArrival = {
-  id: number;
-  name: string;
-  price: number;
-  category: string;
-  image: StaticImageData;
-  discount?: number;
-};
+import ProductCard from "../ui/ProductCard";
+import ProductMobileViewCarousel from "../ui/ProductMobileViewCarousel";
+
 const RelatedProducts = async ({ productSubCategory }: { productSubCategory: string }) => {
   const res = await fetch(
     `${process.env.NEXT_BASE_URL}/product/get-all-products?subCategory=${productSubCategory}`,

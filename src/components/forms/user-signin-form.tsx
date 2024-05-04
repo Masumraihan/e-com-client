@@ -41,11 +41,10 @@ const UserSignInForm = () => {
       if (res?.success) {
         const user = jwtDecode(res.data.accessToken) as TTokenUser;
         dispatch(login({ user, token: res.data.accessToken }));
-       
+
         if (params && params?.get("redirectUrl")) {
           router.push(params?.get("redirectUrl")!);
-        }
-        else if (user?.role === userRole.admin || user?.role === userRole.superAdmin) {
+        } else if (user?.role === userRole.admin || user?.role === userRole.superAdmin) {
           router.push("/dashboard");
         } else {
           router.push("/");
@@ -61,6 +60,20 @@ const UserSignInForm = () => {
   const defaultValues = {
     email: "mdmasumraihan1@gmail.com",
     password: "superAdmin@123",
+  };
+
+  const handleCustomLogin = (loginType: "customer" | "admin") => {
+    if (loginType === "customer") {
+      onSubmit({
+        email: "masum@gmail.com",
+        password: "123456",
+      });
+    } else if (loginType === "admin") {
+      onSubmit({
+        email: "user2@gmail.com",
+        password: "123456",
+      });
+    }
   };
 
   return (
@@ -87,12 +100,7 @@ const UserSignInForm = () => {
         />
         {error && <p className='text-sm text-red'>{error}</p>}
         <div className='w-full pt-2'>
-          <Button
-            disabled={loading}
-            className='w-full ml-auto'
-            type='submit'
-            //onClick={() => setLoading(true)}
-          >
+          <Button disabled={loading} className='w-full ml-auto' type='submit'>
             Continue With Email
           </Button>
         </div>
@@ -105,6 +113,8 @@ const UserSignInForm = () => {
           <span className='px-2 bg-background text-muted-foreground'>Or continue with</span>
         </div>
       </div>
+      <Button onClick={() => handleCustomLogin("admin")}>Login as a Admin</Button>
+      <Button onClick={() => handleCustomLogin("customer")}>Login as a Customer</Button>
       <GoogleSignInButton />
     </>
   );
