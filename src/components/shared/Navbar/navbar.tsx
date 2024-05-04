@@ -27,6 +27,7 @@ import { useEffect, useState } from "react";
 import { ListItem } from "../../navbar-components/ListItem";
 import CustomTooltip from "../CustomTooltip";
 import { TCategory } from "@/app/types";
+import { UserNav } from "@/components/layout/user-nav";
 
 const Navbar = () => {
   const pathname = usePathname();
@@ -141,7 +142,7 @@ const Navbar = () => {
                 {user ? (
                   <CustomTooltip tooltip='Profile'>
                     <CustomTooltip tooltip={user.name}>
-                      <User className='w-5 h-5 cursor-pointer text-primary' />
+                      <UserNav />
                     </CustomTooltip>
                   </CustomTooltip>
                 ) : (

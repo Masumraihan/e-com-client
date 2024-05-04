@@ -10,12 +10,14 @@ const Arrivals = async () => {
     },
   });
   const { data } = await res.json();
-  console.log(data);
-
   return (
     <div className='relative'>
       <div className='container mx-auto mt-10'>
-        <h2 className='mb-2 text-3xl font-extrabold text-center md:text-3xl'>New Arrival</h2>
+        <div className='flex flex-col md:flex-row md:items-center md:justify-between'>
+          <h2 className='mb-2 text-xl font-bold md:text-3xl'>New Arrivals</h2>
+          <p className='cursor-pointer text-underline dark:after:bg-white '>View all Product</p>
+        </div>
+        <hr />
         <div className='hidden grid-cols-1 gap-5 mt-4 lg:grid md:grid-cols-3 lg:grid-cols-5'>
           {data?.map((product: TProduct) => (
             <>
@@ -24,12 +26,7 @@ const Arrivals = async () => {
           ))}
         </div>
         <div className='lg:hidden'>
-          {/*<ProductMobileViewCarousel products={data} Card={ProductCard} />*/}
-        </div>
-        <div className='flex justify-center mt-6'>
-          <Button variant='outline' size='lg' className='mx-auto hover:no-underline rounded-3xl'>
-            <span className='text-lg capitalize cursor-pointer'>View all</span>
-          </Button>
+          <ProductMobileViewCarousel products={data} Card={ProductCard} />
         </div>
       </div>
     </div>

@@ -19,7 +19,6 @@ export const UserClient = (): any => {
   const [query, setQuery] = useState<TQuery>([]);
 
   const { data: users, isLoading } = useGetAllUsersQuery(query);
-  console.log(users);
 
   return (
     <>

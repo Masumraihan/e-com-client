@@ -10,12 +10,9 @@ const MobileLoginLogoutButton = ({ user }: { user: TTokenUser | null | undefined
   const dispatch = useAppDispatch();
   const router = useRouter();
   const handleLogout = async () => {
-    console.log("logout");
     const response = await UserLogout();
-    console.log(response);
     if (response?.success) {
       dispatch(logout());
-      console.log("logout succesffully");
       router.push("/signin");
     }
   };

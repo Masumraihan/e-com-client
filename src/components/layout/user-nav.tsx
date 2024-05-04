@@ -1,6 +1,5 @@
 "use client";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Button } from "@/components/ui/button";
+import { UserLogout } from "@/app/utils/logout";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -13,11 +12,11 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { logout, useCurrentUser } from "@/redux/features/auth/authSlice";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { User, UserCog } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { Icons } from "../icons";
-import { UserLogout } from "@/app/utils/logout";
-import { AlertModal } from "../modal/alert-modal";
 import { useState } from "react";
+import { Icons } from "../icons";
+import { AlertModal } from "../modal/alert-modal";
 //import { useSession, signIn, signOut } from "next-auth/react";
 export function UserNav() {
   const [open, setOpen] = useState(false);
@@ -43,12 +42,7 @@ export function UserNav() {
       />
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button variant='ghost' className='relative w-8 h-8 rounded-full'>
-            <Avatar className='hover:bg-opacity-95'>
-              <AvatarImage src='https://github.com/shadcn.png' alt='@shadcn' />
-              <AvatarFallback>CN</AvatarFallback>
-            </Avatar>
-          </Button>
+          <User className='w-5 h-5 cursor-pointer text-primary' />
         </DropdownMenuTrigger>
         <DropdownMenuContent className='w-56 bg-white dark:bg-dark' align='end' forceMount>
           <DropdownMenuLabel className='font-normal'>
@@ -60,37 +54,9 @@ export function UserNav() {
           <DropdownMenuSeparator />
           <DropdownMenuGroup>
             <DropdownMenuItem className='cursor-pointer hover:bg-gray-100 dark:hover:bg-primary'>
-              Profile
+              Update Profile
               <DropdownMenuShortcut>
-                <Icons.user size={18} />
-              </DropdownMenuShortcut>
-            </DropdownMenuItem>
-            <DropdownMenuItem className='cursor-pointer hover:bg-gray-100 dark:hover:bg-primary'>
-              Crete User
-              <DropdownMenuShortcut>
-                <svg
-                  xmlns='http://www.w3.org/2000/svg'
-                  width='18'
-                  height='18'
-                  viewBox='0 0 24 24'
-                  fill='none'
-                  stroke='currentColor'
-                  strokeWidth='2'
-                  strokeLinecap='round'
-                  strokeLinejoin='round'
-                  className='lucide lucide-user-round-plus'
-                >
-                  <path d='M2 21a8 8 0 0 1 13.292-6' />
-                  <circle cx='10' cy='8' r='5' />
-                  <path d='M19 16v6' />
-                  <path d='M22 19h-6' />
-                </svg>
-              </DropdownMenuShortcut>
-            </DropdownMenuItem>
-            <DropdownMenuItem className='cursor-pointer hover:bg-gray-100 dark:hover:bg-primary'>
-              Create Admin
-              <DropdownMenuShortcut>
-                <Icons.addAdmin size={18} />
+                <UserCog className='w-5 h-5 cursor-pointer text-primary' />
               </DropdownMenuShortcut>
             </DropdownMenuItem>
           </DropdownMenuGroup>

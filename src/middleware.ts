@@ -5,7 +5,6 @@ import { userRole } from "./constants/global";
 
 export function middleware(request: NextRequest) {
   const token = request.cookies.get("accessToken");
-  console.log(token,"from Middleware");
   //if (!token) {
   //  return NextResponse.redirect(new URL("/signin", request.url));
   //}

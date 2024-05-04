@@ -37,7 +37,6 @@ const baseQueryWithRefreshToken: BaseQueryFn<FetchArgs, BaseQueryApi, Definition
       extraOptions,
     );
     if (refreshResult?.data) {
-      console.log({ refreshResult });
       //const user = jwtDecode(refreshResult.data.accessToken);
       //api.dispatch(login({ user, token: refreshResult.data.accessToken }));
       //result = await baseQuery(args, api, extraOptions);

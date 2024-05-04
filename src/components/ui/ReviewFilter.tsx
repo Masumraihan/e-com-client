@@ -4,7 +4,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from ".
 import { useState } from "react";
 import AddReviewModal from "./AddReviewModal";
 
-const ReviewFilter = ({ reviewCount }: { reviewCount: number }) => {
+const ReviewFilter = ({ productId, reviewCount }: { productId: string; reviewCount: number }) => {
   const [value, setValue] = useState("Latest");
   return (
     <div className='flex flex-col items-center justify-between w-full gap-4 md:gap-2 md:flex-row'>
@@ -49,7 +49,7 @@ const ReviewFilter = ({ reviewCount }: { reviewCount: number }) => {
             </Select>
           </>
         </div>
-        <AddReviewModal>
+        <AddReviewModal productId={productId}>
           <Button className='w-full bg-black rounded-full' size='lg'>
             Write a review
           </Button>

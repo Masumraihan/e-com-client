@@ -1,7 +1,7 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 import * as z from "zod";
 import GoogleSignInButton from "../github-auth-button";
@@ -28,7 +28,7 @@ const UserSignInForm = () => {
   const [error, setError] = useState("");
   const [userLogin] = useLoginMutation();
   const dispatch = useAppDispatch();
-
+  const params = useSearchParams();
   const onSubmit = async (data: UserFormValue) => {
     setError("");
     setLoading(true);
@@ -41,9 +41,11 @@ const UserSignInForm = () => {
       if (res?.success) {
         const user = jwtDecode(res.data.accessToken) as TTokenUser;
         dispatch(login({ user, token: res.data.accessToken }));
-        
-        if (user?.role === userRole.admin || user?.role === userRole.superAdmin) {
-          console.log(user, "from login");
+       
+        if (params && params?.get("redirectUrl")) {
+          router.push(params?.get("redirectUrl")!);
+        }
+        else if (user?.role === userRole.admin || user?.role === userRole.superAdmin) {
           router.push("/dashboard");
         } else {
           router.push("/");

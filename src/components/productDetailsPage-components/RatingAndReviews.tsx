@@ -4,16 +4,15 @@ import { useGetSingleProductReviewQuery } from "@/redux/features/reivew/reviewAp
 import ReviewCard from "../ui/ReviewCard";
 import ReviewCardSkeleton from "../ui/ReviewCardSkeleton";
 import ReviewFilter from "../ui/ReviewFilter";
-import { Button } from "../ui/button";
 
 const RatingAndReviews = ({ productId }: { productId: string }) => {
-  const { data, isFetching } = useGetSingleProductReviewQuery(productId);;
+  const { data, isFetching } = useGetSingleProductReviewQuery(productId);
 
   return (
     <>
       <div className='flex justify-between md:items-center'>
         <>
-          <ReviewFilter reviewCount={data?.data?.length || 0} />
+          <ReviewFilter productId={productId} reviewCount={data?.data?.length || 0} />
         </>
       </div>
       {isFetching ? (
@@ -24,18 +23,20 @@ const RatingAndReviews = ({ productId }: { productId: string }) => {
         </div>
       ) : (
         <>
-          <div className='grid gap-4 mt-4 md:grid-cols-2'>
-            {!data?.data?.length ? (
-              <p className='text-center text-gray-500'> No Review yet </p>
-            ) : (
-              data?.data?.map((review: TReview) => <ReviewCard key={review._id} review={review} />)
-            )}
-          </div>
-          <div className='text-center'>
+          {!data?.data?.length ? (
+            <p className='my-5 text-lg font-semibold text-center text-gray-500'> No Review yet </p>
+          ) : (
+            <div className='grid gap-4 mt-4 md:grid-cols-2'>
+              {data?.data?.map((review: TReview) => (
+                <ReviewCard key={review._id} review={review} />
+              ))}
+            </div>
+          )}
+          {/*<div className='text-center'>
             <Button size='lg' variant='outline' className='mt-6 rounded-full'>
               Load More Reviews
             </Button>
-          </div>
+          </div>*/}
         </>
       )}
     </>

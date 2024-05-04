@@ -1,6 +1,7 @@
 import { TProduct } from "@/app/types";
 import BreadCrumb from "@/components/breadcrumb";
 import DetailsTabs from "@/components/productDetailsPage-components/DetailsTabs";
+import RelatedProducts from "@/components/productDetailsPage-components/RelatedProducts";
 import AddToCard from "@/components/ui/AddToCard";
 import ProductImages from "@/components/ui/ProductImages";
 import SelectColor from "@/components/ui/SelectColor";
@@ -15,7 +16,6 @@ const ProductDetailsPage = async ({ params }: { params: { productId: string } })
     },
   );
   const { data }: { data: TProduct } = await res.json();
-  console.log(data, "data");
 
   const breadcrumb = [
     {
@@ -91,7 +91,7 @@ const ProductDetailsPage = async ({ params }: { params: { productId: string } })
           </div>
         </div>
         <DetailsTabs product={data} />
-        {/*<RelatedProducts />*/}
+        <RelatedProducts productSubCategory={data.subCategory} />
       </div>
     </div>
   );

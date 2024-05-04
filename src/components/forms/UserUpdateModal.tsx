@@ -43,7 +43,6 @@ const UserUpdateModal = ({ open, setOpen, user }: TUserModalProps) => {
       const res = await updateUser(userData).unwrap();
       if (res?.success) {
         setOpen(false);
-        console.log(res);
       }
     } catch (error: any) {
       setError(error?.data?.message);
