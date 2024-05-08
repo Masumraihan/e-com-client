@@ -10,6 +10,8 @@ E-Commerce System is an online platform for buying and selling products. The pla
 - User Login: Registered users can log in to the system securely.
 - Implement Product Category and Sub Category
 - Subcategory based product listing
+- User management features
+- Product management features
 - Other features is pending.....
 
 ## Technologies Used
