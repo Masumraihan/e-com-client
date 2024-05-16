@@ -7,15 +7,19 @@ import {
   createApi,
   fetchBaseQuery,
 } from "@reduxjs/toolkit/query/react";
+import { jwtDecode } from "jwt-decode";
+import { TTokenUser, login, logout } from "../features/auth/authSlice";
 
 //const baseUrl = `https://e-com-server-seven.vercel.app/api/v1`;
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: `https://e-com-server-seven.vercel.app/api/v1`,
+  //baseUrl: `https://e-com-server-seven.vercel.app/api/v1`,
+  baseUrl: "http://localhost:8080/api/v1",
   credentials: "include",
 
   prepareHeaders: (headers, { getState }) => {
     const token = (getState() as RootState).auth.token;
+    console.log({ token },"from token");
     if (token) {
       headers.set("authorization", `Bearer ${token}`);
     }
@@ -28,20 +32,21 @@ const baseQueryWithRefreshToken: BaseQueryFn<FetchArgs, BaseQueryApi, Definition
   api,
   extraOptions,
 ): Promise<any> => {
-  const result = await baseQuery(args, api, extraOptions);
+  let result = await baseQuery(args, api, extraOptions);
 
   if (result?.error?.status === 401) {
-    const refreshResult = await baseQuery(
-      { url: "auth/refresh", method: "POST" },
-      api,
-      extraOptions,
-    );
-    if (refreshResult?.data) {
-      //const user = jwtDecode(refreshResult.data.accessToken);
-      //api.dispatch(login({ user, token: refreshResult.data.accessToken }));
-      //result = await baseQuery(args, api, extraOptions);
+    const res = await fetch(`http://localhost:8080/api/v1/auth/refresh`, {
+      credentials: "include",
+    });
+
+    const refreshData = await res.json();
+    const accessToken = refreshData?.data?.accessToken;
+    if (accessToken) {
+      const user = jwtDecode(accessToken) as TTokenUser;
+      api.dispatch(login({ user, token: accessToken }));
+      result = await baseQuery(args, api, extraOptions);
     } else {
-      //api.dispatch(logout());
+      api.dispatch(logout());
     }
   }
   return result;

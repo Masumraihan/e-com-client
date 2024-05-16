@@ -5,15 +5,15 @@ import { userRole } from "./constants/global";
 
 export function middleware(request: NextRequest) {
   const token = request.cookies.get("accessToken");
-  //if (!token) {
-  //  return NextResponse.redirect(new URL("/signin", request.url));
-  //}
-  //const user = jwtDecode(token.value) as TTokenUser;
-  //if ((user && user.role === userRole.admin) || user?.role === userRole.superAdmin) {
-  //  return NextResponse.next();
-  //} else {
-  //  return NextResponse.redirect(new URL("/signin", request.url));
-  //}
+  if (!token) {
+    return NextResponse.redirect(new URL("/signin", request.url));
+  }
+  const user = jwtDecode(token.value) as TTokenUser;
+  if ((user && user.role === userRole.admin) || user?.role === userRole.superAdmin) {
+    return NextResponse.next();
+  } else {
+    return NextResponse.redirect(new URL("/signin", request.url));
+  }
 }
 
 export const config = {

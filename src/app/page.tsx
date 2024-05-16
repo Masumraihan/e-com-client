@@ -9,13 +9,13 @@ import TopCollections from "@/components/homepage-components/TopCollections";
 
 const Home = () => {
   return (
-    <main className='relative space-y-10 lg:space-y-20'>
+    <main className='relative space-y-10 lg:space-y-20 mt-[50px] md:mt-[80px]'>
       <Banner />
-      <Categories />
+      {/*<Categories />*/}
       <Arrivals />
       {/*<TopSales />*/}
-      {/*<TopCollections />*/}
-      {/*<DressStyle />*/}
+      <TopCollections />
+      <DressStyle />
       <Reviews />
     </main>
   );

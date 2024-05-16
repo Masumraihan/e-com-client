@@ -9,7 +9,7 @@ import SubCategories from "./SubCategories";
 const Banner = () => {
   return (
     <section>
-      <div className='bg-[#f2f0f1] mt-[50px] md:mt-[80px]'>
+      <div className='bg-[#f2f0f1]'>
         <div className='container grid w-full h-full lg:grid-cols-2 mx-auto gap-4 md:gap-8 lg:gap-0 lg:max-h-[80vh] py-[50px] lg:py-[70px] md:overflow-hidden'>
           <div className='space-y-4 md:space-y-8'>
             <h1 className='uppercase font-[900] text-3xl md:text-6xl leading-'>
