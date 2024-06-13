@@ -7,23 +7,23 @@ import {
 } from "@/components/ui/accordion";
 import { ChevronRight } from "lucide-react";
 import SubCategoryButton from "../SubCategoryButton";
-const FilterProduct = async () => {
-  const res = await fetch(`${process.env.NEXT_BASE_URL}/category/get-all-categories`);
-  const data = await res.json();
-  const categories = data?.data;
 
-  const subcategoryRes = await fetch(
-    `${process.env.NEXT_BASE_URL}/sub-category/get-all-sub-categories`,
-  );
+type TFilterProductProps = {
+  categories: TCategory[];
+  subCategory: TSubCategory[];
+};
+const FilterProduct = async ({ categories, subCategory }: TFilterProductProps) => {
+  //const [range, setRange] = useState([0, 24]);
 
-  const subCategoryData = await subcategoryRes.json();
-  const subCategory = await subCategoryData?.data;
+  //const handleRangeChange = (value: SetStateAction<number[]>) => {
+  //  setRange(value);
+  //};
 
   return (
-    <div>
+    <div className='space-y-4'>
       <Accordion type='single' collapsible className='w-full'>
         {categories?.map((category: TCategory) => (
-          <AccordionItem key={category._id} value={category._id} className='w-full last:border-b-0'>
+          <AccordionItem key={category._id} value={category._id} className='w-full border-b-0'>
             <AccordionTrigger
               icon={<ChevronRight className='w-4 h-4 transition-transform duration-200' />}
               className='[&[data-state=open]>svg]:rotate-90 hover:no-underline'

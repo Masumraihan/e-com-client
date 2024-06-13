@@ -28,6 +28,7 @@ export function UserNav() {
     if (response?.success) {
       dispatch(logout());
       setOpen(false);
+      localStorage.removeItem("token");
       router.push("/signin");
     }
   };

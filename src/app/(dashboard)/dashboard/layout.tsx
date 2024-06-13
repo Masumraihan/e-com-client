@@ -1,13 +1,19 @@
+"use client";
 import Header from "@/components/layout/header";
 import Sidebar from "@/components/layout/sidebar";
 import type { Metadata } from "next";
-
-export const metadata: Metadata = {
-  title: "",
-  description: "",
-};
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
+  const router = useRouter();
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    console.log({ token }, "layout");
+    if (!token) {
+      router.push("/signin");
+    }
+  }, []);
   return (
     <>
       <Header />

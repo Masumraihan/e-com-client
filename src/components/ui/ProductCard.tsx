@@ -11,13 +11,15 @@ const ProductCard = ({ product }: { product: TProduct }) => {
     <div className='relative overflow-hidden group'>
       <Card>
         <CardHeader className='p-2'>
-          <Image
-            src={product.images[0]}
-            width={100}
-            height={100}
-            alt='product image'
-            className='object-cover w-full h-full rounded max-h-[200px]'
-          />
+          <div>
+            <Image
+              src={product.images[0]}
+              width={100}
+              height={100}
+              alt='product image'
+              className='object-cover w-full h-full rounded max-h-[200px]'
+            />
+          </div>
         </CardHeader>
         <CardContent className='grid space-y-1'>
           <CardTitle className='lg:text-xl'>{product.title}</CardTitle>
@@ -50,7 +52,8 @@ const ProductCard = ({ product }: { product: TProduct }) => {
         <CardFooter className='gap-3'>
           <Link href={`/products/${product?._id}`} className='w-full'>
             <Button className='w-full'>
-              <ShoppingCart className='w-4 h-4 mr-2' /> Add To Cart
+              <ShoppingCart className='w-4 h-4 mr-2' />{" "}
+              <span className='hidden md:inline-block'>Add To Cart</span>
             </Button>
           </Link>
         </CardFooter>

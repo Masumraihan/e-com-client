@@ -64,7 +64,7 @@ const CreateProductForm = ({ subCategories }: { subCategories: TSubCategory[] })
       return;
     }
 
-    const toastId = toast.loading("Uploading Product...");
+    const toastId = toast.loading("Product Creating...");
     // UPLOAD IMAGE INTO IMAGE BB FOR GENERATE URL
     const productImages = await uploadImagesIntoImageBB(data.images).catch((error) => {
       toast.error("Something went wrong while uploading images", {

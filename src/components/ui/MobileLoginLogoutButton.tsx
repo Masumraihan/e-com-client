@@ -13,6 +13,7 @@ const MobileLoginLogoutButton = ({ user }: { user: TTokenUser | null | undefined
     const response = await UserLogout();
     if (response?.success) {
       dispatch(logout());
+      localStorage.removeItem("token");
       router.push("/signin");
     }
   };

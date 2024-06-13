@@ -1,17 +1,17 @@
 "use client";
 import { Button } from "@/components/ui/button";
+import { userRole } from "@/constants/global";
+import { useLoginMutation } from "@/redux/features/auth/authApi";
+import { TTokenUser, login } from "@/redux/features/auth/authSlice";
+import { useAppDispatch } from "@/redux/hooks";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { jwtDecode } from "jwt-decode";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 import * as z from "zod";
 import GoogleSignInButton from "../github-auth-button";
 import CustomForm from "./CustomForm";
 import FormInput from "./FormInput";
-import { useLoginMutation } from "@/redux/features/auth/authApi";
-import { TTokenUser, login } from "@/redux/features/auth/authSlice";
-import { jwtDecode } from "jwt-decode";
-import { useAppDispatch } from "@/redux/hooks";
-import { userRole } from "@/constants/global";
 
 const formSchema = z.object({
   email: z.string({ required_error: "Email is required" }).min(2, { message: "Email is required" }),
@@ -41,7 +41,7 @@ const UserSignInForm = () => {
       if (res?.success) {
         const user = jwtDecode(res.data.accessToken) as TTokenUser;
         dispatch(login({ user, token: res.data.accessToken }));
-
+        localStorage.setItem("token", res.data.accessToken);
         if (params && params?.get("redirectUrl")) {
           router.push(params?.get("redirectUrl")!);
         } else if (user?.role === userRole.admin || user?.role === userRole.superAdmin) {

@@ -10,7 +10,7 @@ import { cn } from "@/lib/utils";
 import { logout } from "@/redux/features/auth/authSlice";
 import { useAppDispatch } from "@/redux/hooks";
 import { LogOut } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AlertModal } from "./modal/alert-modal";
 import { UserLogout } from "@/app/utils/logout";
 
@@ -28,6 +28,7 @@ export function DashboardNav({ items }: DashboardNavProps) {
     if (response?.success) {
       dispatch(logout());
       setOpen(false);
+      localStorage.removeItem("token");
       router.push("/signin");
     }
   };
@@ -35,6 +36,8 @@ export function DashboardNav({ items }: DashboardNavProps) {
   if (!items?.length) {
     return null;
   }
+
+
 
   return (
     <nav className='grid items-start gap-2'>
