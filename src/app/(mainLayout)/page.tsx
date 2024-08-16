@@ -6,6 +6,7 @@ import DressStyle from "@/components/homepage-components/DressStyle";
 import TopSales from "@/components/homepage-components/TopSales";
 import Reviews from "@/components/homepage-components/Reviews";
 import TopCollections from "@/components/homepage-components/TopCollections";
+import OurServiceArea from "@/components/homepage-components/OurServiceArea";
 
 const Home = () => {
   return (
@@ -17,6 +18,7 @@ const Home = () => {
       <TopCollections />
       <DressStyle />
       <Reviews />
+      <OurServiceArea/>
     </main>
   );
 };
