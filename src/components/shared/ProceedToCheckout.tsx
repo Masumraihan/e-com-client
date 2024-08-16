@@ -6,8 +6,10 @@ import Link from "next/link";
 import { Button } from "../ui/button";
 import LoginModal from "./LoginModal";
 import CreateOrderModal from "./CreateOrderModal";
+import { useState } from "react";
 
 const ProceedToCheckout = () => {
+  const [open, setOpen] = useState(false);
   const cartItems = useAppSelector((state) => state.cart.cartItems);
   const auth = useAppSelector((state) => state.auth);
 
@@ -15,7 +17,7 @@ const ProceedToCheckout = () => {
     <div>
       {auth.user ? (
         <>
-          <CreateOrderModal>
+          <CreateOrderModal open={open} setOpen={setOpen}>
             <Button size='lg' className='w-full gap-2' disabled={!cartItems.length}>
               <svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24'>
                 <path
