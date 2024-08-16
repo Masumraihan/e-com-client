@@ -1,4 +1,5 @@
 "use client";
+import { TOrder } from "@/app/types/OrderTypes";
 import { AlertModal } from "@/components/modal/alert-modal";
 import { Button } from "@/components/ui/button";
 import {
@@ -8,13 +9,12 @@ import {
   DropdownMenuLabel,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Employee } from "@/constants/data";
 import { Edit, Maximize2, MoreHorizontal, Trash } from "lucide-react";
 import { useParams, useRouter } from "next/navigation";
 import { useState } from "react";
 
 interface CellActionProps {
-  data: Employee;
+  data: TOrder;
 }
 
 export const CellAction: React.FC<CellActionProps> = ({ data }) => {
@@ -35,22 +35,22 @@ export const CellAction: React.FC<CellActionProps> = ({ data }) => {
       />
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button variant='ghost' className='h-8 w-8 p-0'>
+          <Button variant='ghost' className='w-8 h-8 p-0'>
             <span className='sr-only'>Open menu</span>
-            <MoreHorizontal className='h-4 w-4' />
+            <MoreHorizontal className='w-4 h-4' />
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent align='end' className='bg-white dark:bg-dark'>
           <DropdownMenuLabel>Actions</DropdownMenuLabel>
 
-          <DropdownMenuItem onClick={() => router.push(`/dashboard/user/${data.id}`)}>
-            <Maximize2 className='mr-2 h-4 w-4' /> Details
+          <DropdownMenuItem onClick={() => null}>
+            <Maximize2 className='w-4 h-4 mr-2' /> Details
           </DropdownMenuItem>
-          <DropdownMenuItem onClick={() => router.push(`/dashboard/user/${data.id}`)}>
-            <Edit className='mr-2 h-4 w-4' /> Update
+          <DropdownMenuItem onClick={() => null}>
+            <Edit className='w-4 h-4 mr-2' /> Update
           </DropdownMenuItem>
           <DropdownMenuItem onClick={() => setOpen(true)}>
-            <Trash className='mr-2 h-4 w-4' /> Delete
+            <Trash className='w-4 h-4 mr-2' /> Delete
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>

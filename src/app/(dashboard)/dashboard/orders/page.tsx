@@ -1,3 +1,4 @@
+import { TOrder } from "@/app/types/OrderTypes";
 import BreadCrumb from "@/components/breadcrumb";
 import { columns } from "@/components/tables/orders/columns";
 import { UsersTable } from "@/components/tables/orders/users-table";
@@ -22,33 +23,24 @@ export default async function page({ searchParams }: paramsProps) {
   const pageLimit = Number(searchParams.limit) || 10;
   const country = searchParams.search || null;
   const offset = (page - 1) * pageLimit;
-
-  const res = await fetch(
-    `https://api.slingacademy.com/v1/sample-data/users?offset=${offset}&limit=${pageLimit}` +
-      (country ? `&search=${country}` : ""),
-  );
+  const res = await fetch(`${process.env.NEXT_BASE_URL}/order/get-all-orders`);
   const ordersRes = await res.json();
-  const totalUsers = ordersRes.total_users; //1000
+
+  const totalUsers = ordersRes.data?.data; //1000
   const pageCount = Math.ceil(totalUsers / pageLimit);
-  const orders: Employee[] = ordersRes.users;
+  const orders: TOrder[] = ordersRes.data?.data;
+  console.log(orders);
   return (
     <>
       <div className='flex-1 p-4 pt-6 space-y-4 md:p-8'>
         <BreadCrumb items={breadcrumbItems} />
 
-        <div className='flex items-start justify-between'>
-          <Heading title={`Orders (${totalUsers})`} description='Manage orders for your business' />
-
-          <Link href={"/dashboard"} className={cn(buttonVariants({ variant: "default" }))}>
-            <Plus className='w-4 h-4 mr-2' /> Add New
-          </Link>
-        </div>
         <Separator />
         <UsersTable
-          searchKey='country'
+          searchKey='email'
           pageNo={page}
           columns={columns}
-          totalUsers={totalUsers}
+          totalUsers={orders.length}
           data={orders}
           pageCount={pageCount}
         />

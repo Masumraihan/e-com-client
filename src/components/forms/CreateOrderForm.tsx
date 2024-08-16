@@ -17,7 +17,7 @@ const createOrderSchema = z.object({
   message: z.string().optional(),
 });
 
-const CreateOrderForm = () => {
+const CreateOrderForm = ({ open, setOpen }: { open: boolean; setOpen: any }) => {
   const [error, setError] = useState("");
   const cartItems = useAppSelector((state) => state.cart.cartItems);
   const auth = useAppSelector((state) => state.auth);
@@ -29,7 +29,6 @@ const CreateOrderForm = () => {
     0,
   );
   const handleCreateOrder = async (data: z.infer<typeof createOrderSchema>) => {
-    console.log(data);
     const payload = {
       products: cartItems.map((item: TCartItem) => ({
         product: item.product._id,
@@ -43,6 +42,7 @@ const CreateOrderForm = () => {
     try {
       const res = await createOrder(payload).unwrap();
       if (res.success) {
+        setOpen(false);
         router.push("/payment?orderId=" + res.data._id);
       }
     } catch (error: any) {
