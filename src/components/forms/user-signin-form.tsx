@@ -44,8 +44,6 @@ const UserSignInForm = () => {
         localStorage.setItem("token", res.data.accessToken);
         if (params && params?.get("redirectUrl")) {
           router.push(params?.get("redirectUrl")!);
-        } else if (user?.role === userRole.admin || user?.role === userRole.superAdmin) {
-          router.push("/dashboard");
         } else {
           router.push("/");
         }

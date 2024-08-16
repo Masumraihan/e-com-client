@@ -5,9 +5,14 @@ import { useState } from "react";
 import { Button } from "./button";
 import { Input } from "./input";
 import { toast } from "sonner";
+import { TProduct } from "@/app/types";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { addToCart, TCartItem } from "@/redux/features/cart/cartSlice";
 
-const AddToCard = ({ productStock, productId }: { productStock: number; productId: string }) => {
+const AddToCard = ({ productStock, product }: { productStock: number; product: TProduct }) => {
   const [quantity, setQuantity] = useState(1);
+  const cartItems = useAppSelector((state) => state.cart.cartItems);
+  const dispatch = useAppDispatch();
 
   if (quantity > productStock) {
     toast.error("Out of stock", {
@@ -35,6 +40,14 @@ const AddToCard = ({ productStock, productId }: { productStock: number; productI
     setQuantity(1);
   }
 
+  const handleAddToCart = () => {
+    if (cartItems.find((item: TCartItem) => item.product._id === product._id)) {
+      toast.error("Product already in cart");
+    } else {
+      dispatch(addToCart({ product, quantity }));
+    }
+  };
+
   return (
     <div className='flex gap-5'>
       <div className='w-2/5 flex items-center bg-[#F0F0F0] px-4 py-2 rounded-full'>
@@ -54,7 +67,7 @@ const AddToCard = ({ productStock, productId }: { productStock: number; productI
         </Button>
       </div>
       <div className='w-full'>
-        <Button size='lg' className='w-full py-6 rounded-full'>
+        <Button onClick={handleAddToCart} size='lg' className='w-full py-6 rounded-full'>
           Add to cart
         </Button>
       </div>

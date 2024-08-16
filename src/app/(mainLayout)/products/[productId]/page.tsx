@@ -2,11 +2,14 @@ import { TProduct } from "@/app/types";
 import BreadCrumb from "@/components/breadcrumb";
 import DetailsTabs from "@/components/productDetailsPage-components/DetailsTabs";
 import RelatedProducts from "@/components/productDetailsPage-components/RelatedProducts";
+import ProceedToCheckout from "@/components/shared/ProceedToCheckout";
 import AddToCard from "@/components/ui/AddToCard";
+import { Button } from "@/components/ui/button";
 import ProductImages from "@/components/ui/ProductImages";
 import SelectColor from "@/components/ui/SelectColor";
 import SelectSize from "@/components/ui/SelectSize";
 import { Rating, ThinStar } from "@smastrom/react-rating";
+import Link from "next/link";
 
 const ProductDetailsPage = async ({ params }: { params: { productId: string } }) => {
   const res = await fetch(
@@ -32,7 +35,7 @@ const ProductDetailsPage = async ({ params }: { params: { productId: string } })
     <div className='mt-[80px] container'>
       <BreadCrumb items={breadcrumb} />
       <div className='mb-6 md:hidden'>
-        <AddToCard productId={data._id} productStock={data.quantity} />
+        <AddToCard product={data} productStock={data.quantity} />
       </div>
       <div className='space-y-10'>
         <div className='grid gap-10 lg:grid-cols-2'>
@@ -85,8 +88,13 @@ const ProductDetailsPage = async ({ params }: { params: { productId: string } })
                 <hr />
               </>
             )}
-            <div>
-              <AddToCard productId={data._id} productStock={data.quantity} />
+            <div className='space-y-4'>
+              <AddToCard product={data} productStock={data.quantity} />
+              <Link href='/cart' className='block'>
+                <Button size='lg' className='w-full'>
+                  Checkout Your Cart
+                </Button>
+              </Link>
             </div>
           </div>
         </div>

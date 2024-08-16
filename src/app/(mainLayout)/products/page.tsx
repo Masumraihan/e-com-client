@@ -1,11 +1,11 @@
 import BreadCrumb from "@/components/breadcrumb";
 import FilterProduct from "@/components/products_page-component/FilterProduct";
 import { SlidersHorizontal } from "lucide-react";
-import { TCategory, TProduct, TSubCategory } from "../types";
 import ProductCard from "@/components/ui/ProductCard";
 import ProductMobileViewCarousel from "@/components/ui/ProductMobileViewCarousel";
 import SortingProduct from "@/components/products_page-component/SortingProduct";
 import PriceRang from "@/components/products_page-component/PriceRang";
+import { TCategory, TProduct, TSubCategory } from "@/app/types";
 
 const ProductPage = async () => {
   const res = await fetch(`${process.env.NEXT_BASE_URL}/product/get-all-products?`, {

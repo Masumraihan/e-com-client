@@ -41,7 +41,7 @@ const MobileNav = ({ categories, subCategories, user }: TMobileNavProps) => {
         <Accordion type='single' collapsible className='w-full'>
           {categories?.length &&
             categories?.map((category: TCategory) => (
-              <AccordionItem value={category.category}>
+              <AccordionItem key={category._id} value={category.category}>
                 <AccordionTrigger className='hover:no-underline'>
                   {category.category}
                 </AccordionTrigger>
@@ -51,7 +51,7 @@ const MobileNav = ({ categories, subCategories, user }: TMobileNavProps) => {
                       subCategory.category.category === category.category,
                   )
                   .map((subCategory: TSubCategory) => (
-                    <AccordionContent className='text-primary'>
+                    <AccordionContent key={subCategory._id} className='text-primary'>
                       <Link
                         href={`/category/${subCategory.category.category}/${subCategory.subCategory}`}
                         className='hover:no-underline'

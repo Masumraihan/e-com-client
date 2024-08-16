@@ -11,8 +11,8 @@ import { jwtDecode } from "jwt-decode";
 import { TTokenUser, login, logout } from "../features/auth/authSlice";
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: `https://e-com-server-seven.vercel.app/api/v1`,
-  //baseUrl: "http://localhost:8080/api/v1",
+  //baseUrl: `https://e-com-server-seven.vercel.app/api/v1`,
+  baseUrl: "http://localhost:8080/api/v1",
   credentials: "include",
 
   prepareHeaders: (headers, { getState }) => {

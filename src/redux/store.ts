@@ -12,6 +12,7 @@ import {
   REGISTER,
 } from "redux-persist";
 import createWebStorage from "redux-persist/lib/storage/createWebStorage";
+import cartReducer from "./features/cart/cartSlice";
 
 const createNoopStorage = () => {
   return {
@@ -32,14 +33,20 @@ const persistConfig = {
   key: "auth",
   storage,
 };
+const cartPersistConfig = {
+  key: "cart",
+  storage,
+};
 
 const persistedReducer = persistReducer(persistConfig, authReducer);
+const cartPersistReducer = persistReducer(cartPersistConfig, cartReducer);
 
 const createStore = () =>
   configureStore({
     reducer: {
       auth: persistedReducer,
       [baseApi.reducerPath]: baseApi.reducer,
+      cart: cartPersistReducer,
     },
     middleware: (getDefaultMiddleware) => {
       return getDefaultMiddleware({

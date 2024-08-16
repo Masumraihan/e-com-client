@@ -37,9 +37,11 @@ const ProductDetails = ({ product }: { product: TProduct }) => {
       )}
       {color && (
         <div className='grid grid-cols-2 max-w-[250px]'>
-          <p>Size</p>
+          <p>Color</p>
           <Badge className='text-sm' variant={"outline"}>
-            {size}
+            <span className='w-3 h-3 text-white rounded-full' style={{ backgroundColor: color }}>
+              {color}
+            </span>
           </Badge>
         </div>
       )}

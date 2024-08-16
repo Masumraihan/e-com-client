@@ -1,7 +1,9 @@
-import React from "react";
-
 const LoadingPage = () => {
-  return <p className='text-2xl text-center'>Loading...</p>;
+  return (
+    <div className="flex items-center justify-center h-screen">
+      <p className='text-2xl text-center'>Loading...</p>
+    </div>
+  );
 };
 
 export default LoadingPage;
