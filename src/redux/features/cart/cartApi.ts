@@ -15,7 +15,13 @@ const cartApi = baseApi.injectEndpoints({
         method: "POST",
       }),
     }),
+    getAllOrders: build.query({
+      query: () => ({
+        url: "/order/get-all-orders",
+        method: "GET",
+      }),
+    }),
   }),
 });
 
-export const { useCreateOrderMutation, usePaymentInitMutation } = cartApi;
+export const { useCreateOrderMutation, usePaymentInitMutation, useGetAllOrdersQuery } = cartApi;
