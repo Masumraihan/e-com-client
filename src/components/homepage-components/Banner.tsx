@@ -16,8 +16,10 @@ const Banner = () => {
               Find Clothes That Matches your Style
             </h1>
             <p>
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolorem consequatur voluptas
-              ducimus incidunt deserunt officiis corrupti aliquid voluptatum assumenda repudiandae
+              We are a non-profit organization that aims to provide a safe space to talk about
+              mental health, envisioning a culture that embraces vulnerability and empowers our
+              loved ones to seek help and support. Our dream is a world where mental health is
+              treated with the same care and compassion as physical health. Call us crazy!
             </p>
             <Button size='lg' color='primary' className='w-full px-16 py-6 md:w-auto rounded-3xl'>
               Shop Now

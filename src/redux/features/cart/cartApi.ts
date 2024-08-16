@@ -9,7 +9,13 @@ const cartApi = baseApi.injectEndpoints({
         body: data,
       }),
     }),
+    paymentInit: build.mutation({
+      query: ({ orderId }) => ({
+        url: `/payment/payment-init/${orderId}`,
+        method: "POST",
+      }),
+    }),
   }),
 });
 
-export const { useCreateOrderMutation } = cartApi;
+export const { useCreateOrderMutation, usePaymentInitMutation } = cartApi;

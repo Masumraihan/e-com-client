@@ -16,6 +16,7 @@ import Link from "next/link";
 import { useState } from "react";
 import LoginModal from "./LoginModal";
 import { useRouter } from "next/navigation";
+import CreateOrderModal from "./CreateOrderModal";
 
 const CartDrawer = ({ children }: { children: React.ReactNode }) => {
   const cartItems = useAppSelector((state) => state.cart.cartItems);
@@ -51,13 +52,9 @@ const CartDrawer = ({ children }: { children: React.ReactNode }) => {
           Total Price: <strong>${totalPrice}</strong>
         </p>
         {auth.user ? (
-          <SheetClose className='w-full'>
-            <>
-              <Button
-                onClick={() => router.push("/checkout")}
-                className='w-full gap-2'
-                disabled={!cartItems.length}
-              >
+          <>
+            <CreateOrderModal>
+              <Button size='lg' className='w-full gap-2' disabled={!cartItems.length}>
                 <svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24'>
                   <path
                     fill='currentColor'
@@ -66,8 +63,8 @@ const CartDrawer = ({ children }: { children: React.ReactNode }) => {
                 </svg>
                 Proceed to Checkout
               </Button>
-            </>
-          </SheetClose>
+            </CreateOrderModal>
+          </>
         ) : (
           <LoginModal>
             <Button className='w-full gap-2' disabled={!cartItems.length}>

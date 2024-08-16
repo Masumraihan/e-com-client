@@ -5,20 +5,17 @@ import { useAppSelector } from "@/redux/hooks";
 import Link from "next/link";
 import { Button } from "../ui/button";
 import LoginModal from "./LoginModal";
+import CreateOrderModal from "./CreateOrderModal";
 
 const ProceedToCheckout = () => {
   const cartItems = useAppSelector((state) => state.cart.cartItems);
   const auth = useAppSelector((state) => state.auth);
 
-  const totalPrice = cartItems.reduce(
-    (total: number, item: TCartItem) => total + item.product.price * item.quantity,
-    0,
-  );
   return (
     <div>
       {auth.user ? (
         <>
-          <Link href='/checkout'>
+          <CreateOrderModal>
             <Button size='lg' className='w-full gap-2' disabled={!cartItems.length}>
               <svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24'>
                 <path
@@ -28,7 +25,7 @@ const ProceedToCheckout = () => {
               </svg>
               Proceed to Checkout
             </Button>
-          </Link>
+          </CreateOrderModal>
         </>
       ) : (
         <LoginModal>

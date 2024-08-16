@@ -66,8 +66,8 @@ const Footer = () => {
                 <div className='flex flex-col justify-between'>
                   <span className='text-4xl font-bold'>Logo</span>
                   <p className='mt-5 text-justify'>
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eius, saepe
-                    doloremque. Necessitatibus asperiores, sequi amet mollitia vitae
+                    We have clothes that suits your style and which you're proud to wear. From women
+                    to men.
                   </p>
                   <div className='mt-5'>
                     <ContactLinks />
